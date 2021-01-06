@@ -1,4 +1,4 @@
-# 計算固体力学
+[html版](https://isakari.github.io/comp_mech/)
 
 ## [１次元問題に対する有限要素法](1d/README.md)
 
