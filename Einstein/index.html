@@ -16,34 +16,176 @@
 <p><span class="math display">\[
 \newcommand{\bs}[1]{\boldsymbol{#1}}
 \]</span></p>
-<h1 id="einsteinの総和規約">Einsteinの総和規約</h1>
-<p>本章では, 力学や電磁気学及びその数値解法を記述する際に便利な<strong>Einsteinの総和規約</strong>について説明する. なお, 本稿では<span class="math inline">\(\mathbb{R}^d\)</span>のベクトルを太字のアルファベットで<span class="math inline">\(\bs{a}\)</span>などと書く. また, ベクトル<span class="math inline">\(\bs{a}\)</span>の第<span class="math inline">\(i\)</span>成分を細字のアルファベットを用いて<span class="math inline">\(a_i~(i=1,\cdots,d)\)</span>などと書く. ここに, <span class="math inline">\(d\)</span>は対象とする空間の次元である. 本章では<span class="math inline">\(d=3\)</span>の場合について考える.</p>
+<h1 id="einstein-の総和規約">Einstein の総和規約</h1>
+<p>本章では, 力学や電磁気学及びその数値解法を記述する際に便利な <strong>Einstein の総和規約</strong>について説明する. なお, 本稿では <span class="math inline">\(\mathbb{R}^d\)</span> のベクトルを太字のアルファベットで <span class="math inline">\(\bs{a}\)</span> などと書く. また, ベクトル <span class="math inline">\(\bs{a}\)</span> の第 <span class="math inline">\(i\)</span> 成分を細字のアルファベットを用いて <span class="math inline">\(a_i~(i=1,\cdots,d)\)</span> などと書く. すなわち,</p>
+<p><span class="math display">\[
+\bs{a}=\begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix}
+\]</span> である. ここに, <span class="math inline">\(d\)</span> は対象とする空間の次元である. 本章では <span class="math inline">\(d=3\)</span> の場合について考える.</p>
 <h2 id="ベクトルの内積">ベクトルの内積</h2>
 <p>ベクトル <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> に対して,</p>
 <p><span id="eq:naiseki_orig"><span class="math display">\[
 \bs{a}\cdot\bs{b} := \sum_{i=1}^3 a_i b_i
 \qquad(1)\]</span></span></p>
-<p>をベクトル <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> の内積 (inner product) と呼ぶ. <span class="math inline">\(\bs{a}\cdot\bs{b}\)</span>を<span class="math inline">\((\bs{a},\bs{b})\)</span>と書くこともある. さて, 次元<span class="math inline">\(d\)</span>が前後の文脈などから明らかなときには式( 1)において<span class="math inline">\(\sum_{i=1}^3\)</span>を省略しても差し支えないように思える. そこで, 以降,</p>
+<p>をベクトル <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> の<strong>内積 (inner product)</strong> という. <span class="math inline">\(\bs{a}\cdot\bs{b}\)</span> を <span class="math inline">\((\bs{a},\bs{b})\)</span> と書くこともある. また, ベクトル <span class="math inline">\(\bs{a}\)</span> の転置 <span class="math inline">\(\bs{a}^t\)</span> を用いて <span class="math inline">\(\bs{a}^t \bs{b}\)</span> と書いても良い. さて, 次元 <span class="math inline">\(d\)</span> が前後の文脈などから明らかなときには式( 1)において, <span class="math inline">\(\sum_{i=1}^3\)</span> を省略しても差し支えないように思える. そこで, 以降,</p>
 <p><span id="eq:naiseki"><span class="math display">\[
 \bs{a}\cdot\bs{b} = a_i b_i
 \qquad(2)\]</span></span></p>
-<p>と書くことにする. つまり, <strong>同じ項において添え字が二度現れる場合にはその添字について和をとると約束</strong>する。式( 2)の<span class="math inline">\(i\)</span>のように, 一つの項において二度出現する添字を<strong>ダミーインデックス (dummy index) </strong>と呼ぶ. 一方, 一つの項において一度だけ出現する添字を<strong>フリーインデックス (free index) </strong>と呼ぶ.</p>
-<hr />
-<h5 id="例-ダミーインデックスとフリーインデックス">例: ダミーインデックスとフリーインデックス</h5>
-<p>ベクトル<span class="math inline">\(\bs{b}\)</span>を単位ベクトル<span class="math inline">\(\bs{a}\)</span>が定める直線に正射影したベクトル<span class="math inline">\(\bs{c}=\displaystyle\frac{\bs{a}\cdot\bs{b}}{|\bs{a}|^2} \bs{a}\)</span>の第<span class="math inline">\(i\)</span>成分は</p>
+<p>と書くことにする. つまり, <strong>同じ項において添え字が二度現れる場合にはその添字について和をとると約束</strong>する。式( 2)の <span class="math inline">\(i\)</span> のように, 一つの項において二度出現する添字を<strong>ダミーインデックス (dummy index) </strong>と呼ぶ. 一方, 一つの項において一度だけ出現する添字を<strong>フリーインデックス (free index) </strong>と呼ぶ.</p>
+<blockquote>
+<p><strong>例</strong>: ダミーインデックスとフリーインデックス</p>
+</blockquote>
+<blockquote>
+<p>ベクトル <span class="math inline">\(\bs{b}\)</span> を単位ベクトル <span class="math inline">\(\bs{a}\)</span> が定める直線に正射影したベクトル <span class="math inline">\(\bs{c}=\displaystyle\frac{\bs{a}\cdot\bs{b}}{|\bs{a}|^2} \bs{a}\)</span> の第 <span class="math inline">\(i\)</span> 成分は</p>
+</blockquote>
+<blockquote>
 <p><span id="eq:projection"><span class="math display">\[
 c_i=\frac{a_jb_j}{a_ka_k}a_i~~~\left(=\frac{a_1b_1+a_2b_2+a_3b_3}{a_1a_1+a_2a_2+a_3a_3}a_i\right)
 \qquad(3)\]</span></span></p>
-<p>と書ける. ここに, <span class="math inline">\(j\)</span>と<span class="math inline">\(k\)</span>はダミーインデックス, <span class="math inline">\(i\)</span>はフリーインデックスである. なお,  3において, ダミーインデックスとして<span class="math inline">\(j\)</span>や<span class="math inline">\(k\)</span>を採用したことは本質的でなく, 例えば</p>
+</blockquote>
+<blockquote>
+<p>と書ける. ここに, <span class="math inline">\(j\)</span> と <span class="math inline">\(k\)</span> はダミーインデックス, <span class="math inline">\(i\)</span> はフリーインデックスである. なお, 式( 3) において, ダミーインデックスとして <span class="math inline">\(j\)</span> や <span class="math inline">\(k\)</span> を採用したことは本質的でなく, 例えば</p>
+</blockquote>
+<blockquote>
 <p><span class="math display">\[
 c_i=\frac{a_\ell b_\ell}{a_ma_m}a_i
 \]</span></p>
-<p>などと書いても構わない. ただし, (一つの項において) 添字が3回以上現れる場合についてはここでは定義しないので,</p>
+</blockquote>
+<blockquote>
+<p>などと書いても構わない. ただし, (一つの項において) 添字が 3 回以上現れる場合についてはここでは定義しないので,</p>
+</blockquote>
+<blockquote>
 <p><span class="math display">\[
 c_i=\frac{a_j b_j}{a_ja_j}a_i
 \]</span></p>
-<p>と書いてはいけない.</p>
-<hr />
+</blockquote>
+<blockquote>
+<p>と書くことは許されない.</p>
+</blockquote>
 <p>このような記法は Einstein が初めて用いたことから, <strong>Einstein の総和規約</strong>と呼ばれる.</p>
+<h2 id="kronecker-のデルタ-delta_ij-と交代記号-e_ijk">Kronecker のデルタ <span class="math inline">\(\delta_{ij}\)</span> と交代記号 <span class="math inline">\(e_{ijk}\)</span></h2>
+<p>ここで、2 つの記号を導入する。1 つめは Kronecker のデルタであり、</p>
+<p><span id="eq:kronecker"><span class="math display">\[
+\delta_{ij}=\begin{cases} 1 &amp; \text{if}~~ i=j \\ 0 &amp; \text{otherwise}\end{cases}
+\qquad(4)\]</span></span></p>
+<p>と定義される. すなわち, Kronecker のデルタは, その二つの添字が等しいときに 1 , そうでないときに 0 である二階のテンソルである.</p>
+<blockquote>
+<p><strong>問</strong>: <span class="math inline">\(\delta_{ii}\)</span> の値は?</p>
+</blockquote>
+<blockquote>
+<p><strong>解</strong>: 前述の Einstein の総和規約を適用すれば, <span class="math inline">\(\delta_{ii}~\left(=\delta_{11}+\delta_{22}+\delta_{33}\right)=3\)</span> である. <span class="math inline">\(\delta_{ii}=1\)</span> としないように気をつけよう.</p>
+</blockquote>
+<p>ここで, Kronecker のデルタ <span class="math inline">\(\delta_{ij}\)</span> を成分に持つ行列 <span class="math inline">\(\mathsf{E}\)</span> を考える. 行列 <span class="math inline">\(\mathsf{E}\)</span> を成分表示すれば,</p>
+<p><span class="math display">\[
+\mathsf{E}=
+\begin{pmatrix}
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0\\
+0 &amp; 0 &amp; 1
+\end{pmatrix}
+\]</span></p>
+<p>であるから, これは <span class="math inline">\(\mathbb{R}^{3\times 3}\)</span> の単位行列に他ならない. 単位行列 <span class="math inline">\(\mathsf{E}\)</span> と適当なベクトル <span class="math inline">\(\bs{a}\in\mathbb{R}^3\)</span> の掛け算が <span class="math inline">\(\mathsf{E}\bs{a}=\bs{a}\)</span> となることから,</p>
+<p><span id="eq:deltaijaj"><span class="math display">\[
+\delta_{ij}a_j = a_i
+\qquad(5)\]</span></span></p>
+<p>となることが分かるであろう. すなわち, <strong><span class="math inline">\(\delta_{ij}\)</span> と <span class="math inline">\(j\)</span> を添字に持つベクトル (一般にはテンソル) の掛け算は, ベクトル (またはテンソル) の添字 <span class="math inline">\(j\)</span> を <span class="math inline">\(i\)</span> に置換したもの</strong>となる. 同様に, <span class="math inline">\(\delta_{ij}\)</span> と <span class="math inline">\(i\)</span> を添字に持つベクトル (一般にはテンソル) の掛け算は, ベクトル (またはテンソル) の添字 <span class="math inline">\(i\)</span> を <span class="math inline">\(j\)</span> に置換したものとなる. 式 ( 5) は今後しばしば使うことになる.</p>
+<p>2つめは交代記号 (alternating symbol) と呼ばれ、</p>
+<p><span id="eq:eijk"><span class="math display">\[
+e_{ijk}=
+\begin{cases}
+ 1 &amp; \text{if}~(i,j,k)=(1,2,3)~\text{or}~(2,3,1)~\text{or}~(3,1,2)\\
+-1 &amp; \text{if}~(i,j,k)=(2,1,3)~\text{or}~(3,2,1)~\text{or}~(1,3,2)\\
+ 0 &amp; \text{otherwise}
+\end{cases}
+\qquad(6)\]</span></span></p>
+<p>と定義される. 交代記号は, 順列記号 (permutation symbol), Levi-Civita の記号などと呼ばれることもある.</p>
+<p>Kronecker のデルタと交代記号の間には以下の恒等式が成り立つ.</p>
+<p><span id="eq:eedddd"><span class="math display">\[
+ e_{ijk}e_{ipq}=\delta_{jp}\delta_{kq}-\delta_{jq}\delta_{kp}
+\qquad(7)\]</span></span></p>
+<p>式 ( 7) の証明は, 例えば <span class="math inline">\(e_{ijk}\)</span> が <span class="math inline">\(\mathbb{R}^3\)</span> の 3 つの標準基底のスカラー三重積 (=標準基底をならべた行列の行列式) であることと行列式に関するいくつかの公式を用いることでできるが, ここでは省略する. あるいは <span class="math inline">\(j, k, p, q\)</span> に 1 から 3 までの (<span class="math inline">\(3^4=81\)</span> 通りの) 数字の組を代入して確かめることもできる. 読者のみなさんには, いくつかの <span class="math inline">\(j, k, p, q\)</span> の組み合わせに対して式 ( 7) が成り立つことを実際に確かめてみてほしい. <strong>恒等式 ( 7) は記憶する価値がある</strong>. なぜなら, 後に見るように, この式さえ記憶していれば, ベクトル解析の種々の公式を導出できるからである.</p>
+<h2 id="ベクトルの外積">ベクトルの外積</h2>
+<p>次に, ベクトルの外積について考える. <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> に対して, 以下で定義されるベクトル <span id="eq:outerproduct"><span class="math display">\[
+\bs{a}\times\bs{b} = 
+\begin{pmatrix}
+a_2b_3-a_3b_2\\
+a_3b_1-a_1b_3\\
+a_1b_2-a_2b_1
+\end{pmatrix}
+\qquad(8)\]</span></span> をベクトル <span class="math inline">\(\bs{a}\)</span>, <span class="math inline">\(\bs{b}\)</span> の<strong>外積 (outer product, cross product)</strong> という.</p>
+<p>さて, 先に導入した交代記号 <span class="math inline">\(e_{ijk}\)</span> を使うと, 式 ( 8) に示した外積 <span class="math inline">\(\bs{a}\times\bs{b}\)</span> の第 <span class="math inline">\(i\)</span> 成分は以下のように簡単に表現できる.</p>
+<p><span id="eq:eijkajbk"><span class="math display">\[
+(\bs{a}\times\bs{b})_i = e_{ijk} a_j b_k
+\qquad(9)\]</span></span></p>
+<p>ここで, <span class="math inline">\(i\)</span> がフリーインデックス, <span class="math inline">\(j\)</span>, <span class="math inline">\(k\)</span> がダミーインデックスであることに注意すれば式 ( 9) が外積 (の成分) を表すことは明らかであろう. もし分からなければ, 例えば,</p>
+<p><span class="math display">\[
+\left(\bs{a}\times\bs{b}\right)_1 
+= e_{1jk} a_j b_k
+~~~
+\left( =\sum_{j=1}^3\sum_{k=1}^3e_{1jk}a_jb_k
+=e_{111}a_1 b_1+e_{112}a_1 b_2+e_{113}a_1 b_3
++e_{121}a_2 b_1+e_{122}a_2 b_2+e_{123}a_2 b_3
++e_{131}a_3 b_1+e_{132}a_3 b_2+e_{133}a_3 b_3
+\right)
+\]</span></p>
+<p>を計算してみると良いだろう.</p>
+<h2 id="微分演算子-nabla">微分演算子 <span class="math inline">\(\nabla\)</span></h2>
+<p>微分演算子 <span class="math inline">\(\nabla\)</span> を, 偏微分作用素 $ /partial x_i $ を成分にもつベクトルと解釈することにしよう. ただし, <span class="math inline">\(\nabla\)</span> は演算子 (あるいは作用素) なので, 作用する順序に注意する必要がある. 例えば, <span class="math inline">\(\nabla\cdot\bs{a}\)</span> と <span class="math inline">\(\bs{a}\cdot\nabla\)</span> の表すものは異なる (前者はスカラー, 後者は微分作用素). ここで, 例えばスカラー関数 <span class="math inline">\(f\)</span> の <span class="math inline">\(x_i~(i=1,2,3)\)</span> による偏微分を, <span class="math display">\[
+f,_i:=\frac{\partial f}{\partial x_i}
+\]</span> と書くことにしよう. この記法を用いれば, 勾配, 発散, 回転は以下のように簡潔に書くことができる.</p>
+<ul>
+<li>スカラー値関数 <span class="math inline">\(f\)</span> の勾配 (の第 <span class="math inline">\(i\)</span> 成分): <span class="math inline">\((\text{grad} f)_i:=(\nabla f)_i=f,_i\)</span></li>
+<li>ベクトル値関数 <span class="math inline">\(\bs{a}\)</span> の発散: <span class="math inline">\(\text{div~} \bs{a}:=\nabla\cdot\bs{a}=a_{i,i}\)</span></li>
+<li>ベクトル値関数<span class="math inline">\(\bs{a}\)</span>の回転 (の第 <span class="math inline">\(i\)</span> 成分)： <span class="math inline">\((\text{rot~} \bs{a})_i=(\text{curl~} \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}\)</span></li>
+</ul>
+<p>ここで, 回転が <span class="math inline">\(e_{ijk}a_{j,k}\)</span> ではないことに注意しよう。<span class="math inline">\(k\)</span>, <span class="math inline">\(j\)</span> という順になることが分かりにくければ, <span class="math inline">\(e_{ijk}\frac{\partial}{\partial x_j} a_k\)</span> と書いてみると良いだろう.</p>
+<h2 id="ベクトル解析に現れる種々の公式">ベクトル解析に現れる種々の公式</h2>
+<p>ここで紹介した記法と恒等式 ( 7) を用いると, ベクトル解析に現れる種々の公式を簡単に導出することができる.</p>
+<blockquote>
+<p><strong>例</strong>: <span class="math inline">\(\bs{a}\times\left(\bs{b}\times\bs{c}\right)=(\bs{a}\cdot\bs{c})\bs{b}-(\bs{a}\cdot\bs{b})\bs{c}\)</span></p>
+</blockquote>
+<blockquote>
+<p>証明: <span class="math display">\[
+\begin{align}
+\text{左辺の第~} i \text{~成分}
+&amp;=e_{ijk}a_j(\bs{b}\times \bs{c})_k\\
+&amp;=e_{ijk}a_je_{kpq}b_pc_q\\
+&amp;=e_{kij}e_{kpq}a_jb_pc_q\\
+&amp;=(\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp})a_jb_pc_q\\
+&amp;=a_jc_jb_i-a_jb_jc_i
+=\text{右辺の第~} i \text{~成分}
+\end{align}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p><strong>例</strong>: <span class="math inline">\((\bs{a}\times\bs{b})\cdot(\bs{c}\times\bs{d})=(\bs{a}\cdot\bs{c})(\bs{b}\cdot\bs{d})-(\bs{b}\cdot\bs{c})(\bs{a}\cdot\bs{d})\)</span></p>
+</blockquote>
+<blockquote>
+<p>証明: <span class="math display">\[
+\begin{align}
+\text{左辺}
+&amp;=(e_{ijk}a_jb_k) (e_{ipq}c_pd_q)\\
+&amp;=e_{ijk}e_{ipq} a_jb_kc_pd_q\\
+&amp;=(\delta_{jp}\delta_{kq}-\delta_{jq}\delta_{kp})a_jb_kc_pd_q\\
+&amp;=a_jb_kc_jd_k-a_jb_kc_kd_j
+=\text{右辺}
+\end{align}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p><strong>例</strong>: <span class="math inline">\(\nabla\times(\nabla\times\bs{a})=\nabla(\nabla\cdot \bs{a})-\nabla^2 \bs{a}\)</span>　(ここに, <span class="math inline">\(\nabla^2=\partial^2/\partial x_i\partial x_i\)</span> は Laplacian である. 注意: <span class="math inline">\(i\)</span> はダミーインデックス. ) 証明: <span class="math display">\[
+\begin{align}
+\text{左辺の第~} i \text{~成分}
+&amp;=e_{ijk}(\nabla\times\bs{a})_{k,j}\\
+&amp;=e_{ijk}(e_{kpq}a_{q,p}),_{j}\\
+&amp;=e_{kij}e_{kpq}a_{q,pj}\\
+&amp;=(\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp})a_{q,pj}\\
+&amp;=a_{j,ij}-a_{i,jj}\\
+&amp;=(a_{j,j})_{,i}-a_{i,jj}=\text{右辺の第~} i \text{~成分}
+\end{align}
+\]</span></p>
+</blockquote>
+<h2 id="積分公式">積分公式</h2>
+<p>Todo: Gaussの定理について書く.</p>
+<h2 id="課題">課題</h2>
 </body>
 </html>
