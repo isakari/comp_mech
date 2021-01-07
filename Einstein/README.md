@@ -188,6 +188,7 @@ $$
 > $$
 
 > **例**:  $\nabla\times(\nabla\times\bs{a})=\nabla(\nabla\cdot \bs{a})-\nabla^2 \bs{a}$　(ここに, $\nabla^2=\partial^2/\partial x_i\partial x_i$ は Laplacian である. 注意: $i$ はダミーインデックス. )
+
 > 証明: 
 > $$
 > \begin{align}
