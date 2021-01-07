@@ -4,7 +4,7 @@
 
 ## 数学的な準備
 * Gauss-Legendre の数値積分公式
-* Einstein の総和規約
+* [Einstein の総和規約](Einstein/README.md)
 
 ## 連続体力学
 * 連続体の変形
