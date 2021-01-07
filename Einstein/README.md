@@ -130,7 +130,7 @@ $${#eq:eijkajbk}
 $$
 \left(\bs{a}\times\bs{b}\right)_1 
 = e_{1jk} a_j b_k
-~~~
+　
 \left( =\sum_{j=1}^3\sum_{k=1}^3e_{1jk}a_jb_k
 =e_{111}a_1 b_1+e_{112}a_1 b_2+e_{113}a_1 b_3
 +e_{121}a_2 b_1+e_{122}a_2 b_2+e_{123}a_2 b_3
