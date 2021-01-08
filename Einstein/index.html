@@ -135,7 +135,7 @@ f,_i:=\frac{\partial f}{\partial x_i}
 <ul>
 <li>スカラー値関数 <span class="math inline">\(f\)</span> の勾配 (の第 <span class="math inline">\(i\)</span> 成分): <span class="math inline">\((\text{grad} f)_i:=(\nabla f)_i=f,_i\)</span></li>
 <li>ベクトル値関数 <span class="math inline">\(\bs{a}\)</span> の発散: <span class="math inline">\(\text{div} \ \bs{a}:=\nabla\cdot\bs{a}=a_{i,i}\)</span></li>
-<li>ベクトル値関数<span class="math inline">\(\bs{a}\)</span>の回転 (の第 <span class="math inline">\(i\)</span> 成分)： <span class="math inline">\((\text{rot} \ \bs{a})_i=(\text{curl} \ \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}\)</span></li>
+<li>ベクトル値関数 <span class="math inline">\(\bs{a}\)</span> の回転 (の第 <span class="math inline">\(i\)</span> 成分)： <span class="math inline">\((\text{rot} \ \bs{a})_i=(\text{curl} \ \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}\)</span></li>
 </ul>
 <p>ここで, 回転が <span class="math inline">\(e_{ijk}a_{j,k}\)</span> ではないことに注意しよう。<span class="math inline">\(k\)</span>, <span class="math inline">\(j\)</span> という順になることが分かりにくければ, <span class="math inline">\(e_{ijk}\frac{\partial}{\partial x_j} a_k\)</span> と書いてみると良いだろう.</p>
 <h2 id="ベクトル解析に現れる種々の公式の導出">ベクトル解析に現れる種々の公式の導出</h2>
@@ -210,7 +210,7 @@ f,_i:=\frac{\partial f}{\partial x_i}
 <p><span class="math display">\[
 \int_a^b \frac{\text{d}f}{\text{d}x} \text{d}x = f(b)-f(a)
 \]</span></p>
-<p>と書ける. 右辺を <span class="math inline">\(x=a \ (b)\)</span> における「法線」<span class="math inline">\(-1 \ (+1)\)</span> を乗じた <span class="math inline">\(f\)</span> の「点積分」と見做せば, これが Gauss の定理に他ならないことが分かるであろう.</p>
+<p>と書ける. 右辺を <span class="math inline">\(x=a \ (b)\)</span> における「法線」<span class="math inline">\(-1 \ (+1)\)</span> を乗じた <span class="math inline">\(f\)</span> の「点積分」と見做せば, これが Gauss の定理に他ならないことが分かるであろう. このように解釈しておくことで, 万一, Gauss の定理 ( 10) を忘れてしまった場合でも, 微分積分学の基本定理から Gauss の定理を「復元」することができる.</p>
 <h2 id="演習問題">演習問題</h2>
 <p>ここで導入した添字記法と Einstein の総和規約を用いることで, 力学や電磁気学の記述が簡単になり, 計算の見通しが格段に良くなるのでぜひ習得して欲しい. 以下に練習用の問題をいくつか挙げておく.</p>
 <ol type="1">
@@ -232,6 +232,9 @@ f,_i:=\frac{\partial f}{\partial x_i}
 <li><span class="math inline">\((\bs{a}\times\nabla)\cdot\bs{r}\)</span></li>
 <li><span class="math inline">\(\nabla\times\left(\bs{a}\times\displaystyle\frac{\bs{r}}{r}\right)\)</span></li>
 </ol></li>
+<li><p>Stokes の定理を Einstein の総和規約を用いて記述せよ.</p></li>
 </ol>
+<hr />
+<p><a href="../index.html">../</a></p>
 </body>
 </html>

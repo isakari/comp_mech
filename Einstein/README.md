@@ -150,7 +150,7 @@ $$
 
 - スカラー値関数 $f$ の勾配 (の第 $i$ 成分):  $(\text{grad} f)_i:=(\nabla f)_i=f,_i$
 - ベクトル値関数 $\bs{a}$ の発散: $\text{div} \ \bs{a}:=\nabla\cdot\bs{a}=a_{i,i}$
-- ベクトル値関数$\bs{a}$の回転 (の第 $i$ 成分)： $(\text{rot} \ \bs{a})_i=(\text{curl} \ \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}$
+- ベクトル値関数 $\bs{a}$ の回転 (の第 $i$ 成分)： $(\text{rot} \ \bs{a})_i=(\text{curl} \ \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}$
 
 ここで, 回転が $e_{ijk}a_{j,k}$ ではないことに注意しよう。$k$, $j$ という順になることが分かりにくければ, $e_{ijk}\frac{\partial}{\partial x_j} a_k$ と書いてみると良いだろう. 
 
@@ -236,7 +236,7 @@ $$
 \int_a^b \frac{\text{d}f}{\text{d}x} \text{d}x = f(b)-f(a)
 $$
 
-と書ける. 右辺を $x=a \ (b)$ における「法線」$-1 \ (+1)$ を乗じた $f$ の「点積分」と見做せば, これが Gauss の定理に他ならないことが分かるであろう. 
+と書ける. 右辺を $x=a \ (b)$ における「法線」$-1 \ (+1)$ を乗じた $f$ の「点積分」と見做せば, これが Gauss の定理に他ならないことが分かるであろう. このように解釈しておくことで, 万一, Gauss の定理 ([@eq:gauss_theorem]) を忘れてしまった場合でも, 微分積分学の基本定理から Gauss の定理を「復元」することができる.
 
 
 ## 演習問題
@@ -261,3 +261,7 @@ $$
    6. $\nabla\times\left(\bs{a}\times\displaystyle\frac{\bs{r}}{r}\right)$
 
 4. Stokes の定理を Einstein の総和規約を用いて記述せよ. 
+
+---
+
+[../](../index.html)
