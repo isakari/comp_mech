@@ -33,7 +33,7 @@ $${#eq:naiseki}
 > ベクトル $\bs{b}$ を単位ベクトル $\bs{a}$ が定める直線に正射影したベクトル $\bs{c}=\displaystyle\frac{\bs{a}\cdot\bs{b}}{|\bs{a}|^2} \bs{a}$ の第 $i$ 成分は
 
 > $$
-> c_i=\frac{a_jb_j}{a_ka_k}a_i~~~\left(=\frac{a_1b_1+a_2b_2+a_3b_3}{a_1a_1+a_2a_2+a_3a_3}a_i\right)
+> c_i=\frac{a_jb_j}{a_ka_k}a_i \ \ \left(=\frac{a_1b_1+a_2b_2+a_3b_3}{a_1a_1+a_2a_2+a_3a_3}a_i\right)
 > $${#eq:projection}
 
 > と書ける. ここに, $j$ と $k$ はダミーインデックス, $i$ はフリーインデックスである. なお, 式([@eq:projection]) において, ダミーインデックスとして $j$ や $k$ を採用したことは本質的でなく, 例えば
@@ -57,7 +57,7 @@ $${#eq:naiseki}
 ここで、2 つの記号を導入する。1 つめは Kronecker のデルタであり、
 
 $$
-\delta_{ij}=\begin{cases} 1 & \text{if}~~ i=j \\ 0 & \text{otherwise}\end{cases}
+\delta_{ij}=\begin{cases} 1 & \text{if} \ \ i=j \\ 0 & \text{otherwise}\end{cases}
 $${#eq:kronecker}
 
 と定義される. すなわち, Kronecker のデルタは, その二つの添字が等しいときに 1 , そうでないときに 0 である二階のテンソルである.
