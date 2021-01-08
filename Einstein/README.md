@@ -204,7 +204,7 @@ $$
 
 ## 積分公式
 
-ベクトル解析におけるもっとも重要な定理として, Gauss の (発散) 定理は以下のようである. 
+ベクトル解析におけるもっとも重要な定理である Gauss の (発散) 定理は以下のように書ける. 
 
 $$
 \int\int\int_V \text{div} \bs{F} \text{d}V = \int\int_S \bs{F}\cdot\bs{n} \text{d}S
@@ -252,13 +252,13 @@ $$
    4. $\nabla\times\nabla\phi = \bs{0}$
    5. $\nabla\cdot\nabla\times\bs{v} = 0$
 
-3. $\bs{r}=(x_1, x_2, x_3)^t$, $r=|\bs{r}|$ (ただし $\bs{r}\neq\bs{0}$) とする. また, $\bs{a}$ を ($x_i$ に依らない) 定ベクトルとする. 以下を計算せよ. 
+3. $r=|\bs{x}|$ (ただし $\bs{x}\neq\bs{0}$) とする. また, $\bs{a}$ を ($x_i$ に依らない) 定ベクトルとする. 以下を計算せよ. 
    1. $\nabla r$ \ \ (ヒント: $r^2=x_jx_j$ であり, また $x_{i,j}=\delta_{ij}$ である.)
-   2. $\nabla\cdot\bs{r}$
-   3. $\nabla\times\bs{r}$
-   4. $\nabla \ (\bs{a}\cdot\bs{r})$
-   5. $(\bs{a}\times\nabla)\cdot\bs{r}$
-   6. $\nabla\times\left(\bs{a}\times\displaystyle\frac{\bs{r}}{r}\right)$
+   2. $\nabla\cdot\bs{x}$
+   3. $\nabla\times\bs{x}$
+   4. $\nabla \ (\bs{a}\cdot\bs{x})$
+   5. $(\bs{a}\times\nabla)\cdot\bs{x}$
+   6. $\nabla\times\left(\bs{a}\times\displaystyle\frac{\bs{x}}{r}\right)$
 
 4. Stokes の定理を Einstein の総和規約を用いて記述せよ. 
 

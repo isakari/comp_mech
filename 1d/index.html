@@ -13,11 +13,74 @@
 <link rel="stylesheet" href="github-markdown.css">
 </head>
 <body>
-<h1 id="次元問題に対する有限要素法">1次元問題に対する有限要素法</h1>
+<p><span class="math display">\[
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\dfrac}[2]{\displaystyle\frac{\text{d}{#1}}{\text{d}{#2}}}
+\newcommand{\ddfrac}[2]{\displaystyle\frac{\text{d}^2{#1}}{\text{d}{#2}^2}}
+\]</span></p>
+<h1 id="イントロダクション-1次元問題に対する有限要素法">1. イントロダクション: 1次元問題に対する有限要素法</h1>
 <p>本章では, 有限要素法 (finite element method; FEM) の概念を説明することを目的とし, <span class="math inline">\(x\in[0,1]\)</span> で定義された二階常微分方程式</p>
 <p><span id="eq:governing_eq"><span class="math display">\[
 \frac{\text{d}^2 u(x)}{\text{d} x^2} = -f(x)
 \qquad(1)\]</span></span></p>
 <p>を対象とした有限要素法について述べる. ここに, <span class="math inline">\(u(x)\)</span> は未知のスカラー関数, <span class="math inline">\(f\)</span> は既知のスカラー関数である.</p>
+<h2 id="境界値問題の定式化">境界値問題の定式化</h2>
+<p>はじめに, 弦のたわみが式 ( 1) で記述される物理現象 (の一つ) であることを確認しよう. 今, 図 1 のように, 両端が固定された長さ 1 の弦に, 下向き分布荷重 <span class="math inline">\(q(x)\)</span> が作用した時, 点 <span class="math inline">\(x\)</span> におけるたわみ <span class="math inline">\(v(x)\)</span> を求める問題を考えよう. なお, 荷重は下向きに作用するので, 縦軸は下向きを正にとる.</p>
+<figure>
+<img src="./figs/setting.jpeg" id="fig:setting" alt="図 1: 分布荷重を受けてたわむ弦" /><figcaption aria-hidden="true">図 1: 分布荷重を受けてたわむ弦</figcaption>
+</figure>
+<p>微小領域 <span class="math inline">\([x,x+\text{d}x]\)</span> における弦に作用する力の釣り合いを考える (図 2).</p>
+<figure>
+<img src="./figs/equiv.jpeg" id="fig:equiv" alt="図 2: 微小領域における力のつりあい" /><figcaption aria-hidden="true">図 2: 微小領域における力のつりあい</figcaption>
+</figure>
+<p>弦に働く張力を <span class="math inline">\(T\)</span> と書き, 変形が微小であることを仮定すれば <span class="math inline">\(\sin\theta\simeq\tan\theta=\displaystyle\frac{\text{d}u(x)}{\text{d}x}\)</span> だから, 左端 <span class="math inline">\(x\)</span> に作用する張力の鉛直方向成分は <span class="math inline">\(-T\sin\theta\simeq-T\dfrac{u(x)}{x}\)</span> と書ける. 同様にして, 右端 <span class="math inline">\(x+\text{d}x\)</span> に作用する力の鉛直方向成分は</p>
+<p><span class="math display">\[
+T\dfrac{u(x+\text{d}x)}{x}
+\simeq T\left(\dfrac{u(x)}{x}+\ddfrac{u(x)}{x}\text{d}x\right)
+\]</span></p>
+<p>である. さらに, 与えられた分布荷重が微小領域において一定値 <span class="math inline">\(q(x)\)</span> を取るとすれば, 力の釣り合いは</p>
+<p><span class="math display">\[
+-T\dfrac{u(x)}{x}+T\left(\dfrac{u(x)}{x}+\ddfrac{u(x)}{x}\text{d}x\right)+q(x)\text{d}x=0
+\]</span></p>
+<p>と書ける. これを整理して, <span class="math inline">\(f(x)=q(x)/T\)</span> とおけば式 ( 1) を得る.</p>
+<p>今, 弦は両端で固定されているので, 境界条件は</p>
+<p><span id="eq:bc"><span class="math display">\[
+u(0)=u(1)=0
+\qquad(2)\]</span></span></p>
+<p>である. 微分方程式 ( 1) と境界条件 ( 2) の組みを<strong>境界値問題 (boudnary value problem; BVP)</strong> と呼ぶ. 有限要素法は境界値問題の数値解法のひとつである. なお, 式 ( 2) のように, 未知関数そのものの境界値を与える境界条件を Dirichlet 境界条件という. 一方で, 未知関数の境界値での微分値を与える境界条件は Neumann 境界条件, Dirichlet 条件と Neumann 条件の線形結合を与える境界条件は Robin 境界条件と呼ばれる.</p>
+<blockquote>
+<p><strong>問</strong>: <span class="math inline">\(f(x)=1\)</span> のとき, 上の Dirichlet 境界値問題の解を解析的に (=手計算で積分し) 求めよ. 特に, <span class="math inline">\(x=1/2\)</span> における <span class="math inline">\(u\)</span> の値はいくらか?</p>
+</blockquote>
+<blockquote>
+<p><strong>解</strong>: <span class="math inline">\(u(x)=-\displaystyle\frac{1}{2}x^2+\displaystyle\frac{1}{2}x\)</span>,  <span class="math inline">\(u(1/2)=1/8\)</span></p>
+</blockquote>
+<h2 id="重み付き残差法-weighted-residual-method-wrm-と-galerkin-法">重み付き残差法 (weighted residual method; WRM) と Galerkin 法</h2>
+<p>先の「問」においては, 解析的に微分方程式を解くことができた. しかし, 一般にはこれは難しい. そこで <span class="math inline">\(u\)</span> をなんらかの意味で近似する関数 <span class="math inline">\(\tilde{u}\)</span> を求めることが必要となる. 以下, <span class="math inline">\(\tilde{u}\)</span> を求める方法の一つである重み付き残差法について解説する.</p>
+<p>まず, <span class="math inline">\(\tilde{u}\)</span> が <span class="math inline">\(u\)</span> が満たすべき境界条件 ( 2) を満足することを要請しよう. すると, <span class="math inline">\(g_i(0)=g_i(1)=0\)</span> を満たす関数 <span class="math inline">\(g_i(x)\)</span> (例えば$　g_i(x)=x^{i+1}(1-x)$ など) を用いて構成される</p>
+<p><span id="eq:aigi"><span class="math display">\[
+\sum_{i=0}^{n-1} a_i g_i(x)
+\qquad(3)\]</span></span></p>
+<p>は <span class="math inline">\(\tilde{u}\)</span> の候補となる. ここに, <span class="math inline">\(a_i\in\mathbb{R}\)</span> は未知の係数である. 未知係数 <span class="math inline">\(a_i\)</span> を求めるため, ここでは<strong>重み付き残差法</strong>を採用する. その他の方法としては, 微分方程式の定義された領域内部の有限個の点 <span class="math inline">\(x_i \ (i=0,\cdots, n-1)\)</span> において微分方程式を満たすように <span class="math inline">\(a_i\)</span> を決める<strong>選点法</strong>が代表的である.</p>
+<p>適当な重み関数 <span class="math inline">\(v_i(x)\)</span> を <span class="math inline">\(i=0, \cdots, n-1\)</span> の <span class="math inline">\(n\)</span> 種類準備し, 微分方程式 ( 1) の両辺にこれを乗じ, 微分方程式の定義された領域 <span class="math inline">\([0, 1]\)</span> において積分すると以下を得る.</p>
+<p><span id="eq:wre"><span class="math display">\[
+\int_0^1 v_i \left( \ddfrac{\tilde{u}(x)}{x}+f(x) \right) \text{d}x=0
+\qquad(4)\]</span></span></p>
+<p>式 ( 4) を<strong>重み付き残差式</strong>と呼ぶ. これを満たすように未知係数 <span class="math inline">\(a_i\)</span> を定める方法を<strong>重み付き残差法</strong>である.</p>
+<blockquote>
+<p><strong>例</strong>: <span class="math inline">\(f(x)=1\)</span>の場合を考える. <span class="math inline">\(n=1\)</span>, <span class="math inline">\(g_i(x)=\sin i \pi x\)</span> とし,</p>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>v_i=1</strong></li>
+</ul>
+</blockquote>
+<blockquote>
+<ul>
+<li><strong>v_i=g_i</strong></li>
+</ul>
+</blockquote>
+<h2 id="有限要素法">有限要素法</h2>
+<hr />
+<p><a href="../index.html">../</a></p>
 </body>
 </html>
