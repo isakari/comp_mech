@@ -14,13 +14,13 @@ $$
 
 ## ベクトルの内積
 
-ベクトル $\bs{a}, \bs{b} \in \mathbb{R}^3$ に対して, 
+はじめに, ベクトルの内積を例にとり, Einstein の総和規約について説明する. ベクトル $\bs{a}, \bs{b} \in \mathbb{R}^3$ に対して, 
 
 $$
 \bs{a}\cdot\bs{b} := \sum_{i=1}^3 a_i b_i
 $${#eq:naiseki_orig}
 
-をベクトル $\bs{a}, \bs{b} \in \mathbb{R}^3$ の**内積 (inner product)** という. $\bs{a}\cdot\bs{b}$ を $(\bs{a},\bs{b})$ と書くこともある. また, ベクトル $\bs{a}$ の転置 $\bs{a}^t$ を用いて $\bs{a}^t \bs{b}$ と書いても良い. さて, 次元 $d$ が前後の文脈などから明らかなときには式([@eq:naiseki_orig])において, $\sum_{i=1}^3$ を省略しても差し支えないように思える. そこで, 以降, 
+をベクトル $\bs{a}, \bs{b} \in \mathbb{R}^3$ の**内積 (inner product)** というのであった. $\bs{a}\cdot\bs{b}$ を $(\bs{a},\bs{b})$ と書くこともある. また, ベクトル $\bs{a}$ の転置 $\bs{a}^t$ を用いて $\bs{a}^t \bs{b}$ と書いても良い. さて, 次元 $d$ が前後の文脈などから明らかなときには式([@eq:naiseki_orig])において, $\sum_{i=1}^3$ を省略しても差し支えないように思える. そこで, 以降, 
 
 $$
 \bs{a}\cdot\bs{b} = a_i b_i
@@ -36,7 +36,7 @@ $${#eq:naiseki}
 > c_i=\frac{a_jb_j}{a_ka_k}a_i \ \ \left(=\frac{a_1b_1+a_2b_2+a_3b_3}{a_1a_1+a_2a_2+a_3a_3}a_i\right)
 > $${#eq:projection}
 
-> と書ける. ここに, $j$ と $k$ はダミーインデックス, $i$ はフリーインデックスである. なお, 式([@eq:projection]) において, ダミーインデックスとして $j$ や $k$ を採用したことは本質的でなく, 例えば
+> と書ける. ここで, $j$ と $k$ はダミーインデックス, $i$ はフリーインデックスである. なお, 式([@eq:projection]) において, ダミーインデックスとして $j$ や $k$ を採用したことは本質的でなく, 例えば
 
 > $$
 > c_i=\frac{a_\ell b_\ell}{a_ma_m}a_i
@@ -85,7 +85,7 @@ $${#eq:deltaijaj}
 
 となることが分かるであろう. すなわち, **$\delta_{ij}$ と $j$ を添字に持つベクトル (一般にはテンソル) の掛け算は, ベクトル (またはテンソル) の添字 $j$ を $i$ に置換したもの**となる. 同様に, $\delta_{ij}$ と $i$ を添字に持つベクトル (一般にはテンソル) の掛け算は, ベクトル (またはテンソル) の添字 $i$ を $j$ に置換したものとなる. 式 ([@eq:deltaijaj]) は今後しばしば使うことになる. 
 
-2つめは交代記号 (alternating symbol) と呼ばれ、
+2 つめは交代記号 (alternating symbol) と呼ばれ、
 
 $$
 e_{ijk}=
@@ -142,7 +142,7 @@ $$
 
 ## 微分演算子 $\nabla$
 
-微分演算子 $\nabla$ を, 偏微分作用素 $ \partial/partial x_i $ を成分にもつベクトルと解釈することにしよう. ただし, $\nabla$ は演算子 (あるいは作用素) なので, 作用する順序に注意する必要がある. 例えば, $\nabla\cdot\bs{a}$ と $\bs{a}\cdot\nabla$ の表すものは異なる (前者はスカラー, 後者は微分作用素). ここで, 例えばスカラー関数 $f$ の $x_i \ (i=1,2,3)$ による偏微分を, 
+微分演算子 $\nabla$ を, 偏微分作用素 $\partial/\partial x_i$ を成分にもつベクトルと解釈することにしよう. ただし, $\nabla$ は演算子 (あるいは作用素) なので, 作用する順序に注意する必要がある. 例えば, $\nabla\cdot\bs{a}$ と $\bs{a}\cdot\nabla$ の表すものは異なる (前者はスカラー, 後者は微分作用素). ここで, 例えばスカラー関数 $f$ の $x_i \ (i=1,2,3)$ による偏微分を, 
 $$
 f,_i:=\frac{\partial f}{\partial x_i}
 $$
@@ -154,7 +154,7 @@ $$
 
 ここで, 回転が $e_{ijk}a_{j,k}$ ではないことに注意しよう。$k$, $j$ という順になることが分かりにくければ, $e_{ijk}\frac{\partial}{\partial x_j} a_k$ と書いてみると良いだろう. 
 
-## ベクトル解析に現れる種々の公式
+## ベクトル解析に現れる種々の公式の導出
 
 ここで紹介した記法と恒等式 ([@eq:eedddd]) を用いると, ベクトル解析に現れる種々の公式を簡単に導出することができる. 
 
@@ -204,6 +204,58 @@ $$
 
 ## 積分公式
 
-Todo: Gaussの定理について書く. 
+ベクトル解析におけるもっとも重要な定理として, Gauss の (発散) 定理は以下のようである. 
 
-## 課題
+$$
+\int\int\int_V \text{div} \bs{F} \text{d}V = \int\int_S \bs{F}\cdot\bs{n} \text{d}S
+$${#eq:gauss_theorem}
+
+ここに, $\bs{F}: \mathbb{R}^3\rightarrow\mathbb{R}^3$ はベクトル場, $V$ は $\mathbb{R}^3$ の有界領域, $S:=\partial V$ はその境界である. 単位法線ベクトル $\bs{n}$ は $V$ の外向きに定義した. ガウスの発散定理 ([@eq:gauss_theorem]) を添字を用いて表記すれば, 
+
+$$
+\int\int\int_V F_{i,i} \text{d}V = \int\int_S F_in_i \text{d}S
+$${#eq:gauss_theorem_index}
+
+である. Gauss の(発散) 定理と書いたのは, 式 ([@eq:gauss_theorem_index]) において, 発散を取る前の
+
+$$
+\int\int\int_V F_1 \text{d}V = \int\int_S F_1n_1 \text{d}S
+$$
+
+$$
+\int\int\int_V F_2 \text{d}V = \int\int_S F_2n_2 \text{d}S
+$$
+
+$$
+\int\int\int_V F_3 \text{d}V = \int\int_S F_3n_3 \text{d}S
+$$
+
+もそれぞれ成立することを強調するためである. なお, 一次元の Gauss の定理 (微分積分学の基本定理) は
+
+$$
+\int_a^b \frac{\text{d}f}{\text{d}x} \text{d}x = f(b)-f(a)
+$$
+
+と書ける. 右辺を $x=a \ (b)$ における「法線」$-1 \ (+1)$ を乗じた $f$ の「点積分」と見做せば, これが Gauss の定理に他ならないことが分かるであろう. 
+
+
+## 演習問題
+
+ここで導入した添字記法と Einstein の総和規約を用いることで, 力学や電磁気学の記述が簡単になり, 計算の見通しが格段に良くなるのでぜひ習得して欲しい. 以下に練習用の問題をいくつか挙げておく.
+
+1. $\bs{a}$, $\bs{b}$, $\bs{c}\in\mathbb{R}^3\rightarrow\mathbb{R}^3$ をベクトル場とする. $(\bs{a}\times\bs{b})\times\bs{c}=(\bs{a}\cdot\bs{c})\bs{b}-(\bs{b}\cdot\bs{c})\bs{a}$ を示せ.
+
+2. $\phi: \mathbb{R}^3\rightarrow\mathbb{R}$ をスカラー場, $\bs{u}$, $\bs{v}: \mathbb{R}^3\rightarrow\mathbb{R}^3$ をベクトル場とする. 以下の恒等式を証明せよ. 
+   1. $\nabla\cdot(\phi \bs{v})=\nabla\phi\cdot\bs{v}+\phi \ \text{div} \ \bs{v}$
+   2. $\nabla\times(\phi \bs{v})=\nabla\phi\times\bs{v}+\phi \ (\nabla\times\bs{v})$
+   3. $\nabla\cdot(\bs{u}\times\bs{v})=\bs{v}\cdot(\nabla\times\bs{u})-\bs{u}\cdot(\nabla\times\bs{v})$
+   4. $\nabla\times\nabla\phi = \bs{0}$
+   5. $\nabla\cdot\nabla\times\bs{v} = 0$
+
+3. $\bs{r}=(x_1, x_2, x_3)^t$, $r=|\bs{r}|$ (ただし $\bs{r}\neq\bs{0}$) とする. また, $\bs{a}$ を ($x_i$ に依らない) 定ベクトルとする. 以下を計算せよ. 
+   1. $\nabla r$ \ \ (ヒント: $r^2=x_jx_j$ であり, また $x_{i,j}=\delta_{ij}$ である.)
+   2. $\nabla\cdot\bs{r}$
+   3. $\nabla\times\bs{r}$
+   4. $\nabla \ (\bs{a}\cdot\bs{r})$
+   5. $(\bs{a}\times\nabla)\cdot\bs{r}$
+   6. $\nabla\times\left(\bs{a}\times\displaystyle\frac{\bs{r}}{r}\right)$

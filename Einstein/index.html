@@ -22,11 +22,11 @@
 \bs{a}=\begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix}
 \]</span> である. ここに, <span class="math inline">\(d\)</span> は対象とする空間の次元である. 本章では <span class="math inline">\(d=3\)</span> の場合について考える.</p>
 <h2 id="ベクトルの内積">ベクトルの内積</h2>
-<p>ベクトル <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> に対して,</p>
+<p>はじめに, ベクトルの内積を例にとり, Einstein の総和規約について説明する. ベクトル <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> に対して,</p>
 <p><span id="eq:naiseki_orig"><span class="math display">\[
 \bs{a}\cdot\bs{b} := \sum_{i=1}^3 a_i b_i
 \qquad(1)\]</span></span></p>
-<p>をベクトル <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> の<strong>内積 (inner product)</strong> という. <span class="math inline">\(\bs{a}\cdot\bs{b}\)</span> を <span class="math inline">\((\bs{a},\bs{b})\)</span> と書くこともある. また, ベクトル <span class="math inline">\(\bs{a}\)</span> の転置 <span class="math inline">\(\bs{a}^t\)</span> を用いて <span class="math inline">\(\bs{a}^t \bs{b}\)</span> と書いても良い. さて, 次元 <span class="math inline">\(d\)</span> が前後の文脈などから明らかなときには式( 1)において, <span class="math inline">\(\sum_{i=1}^3\)</span> を省略しても差し支えないように思える. そこで, 以降,</p>
+<p>をベクトル <span class="math inline">\(\bs{a}, \bs{b} \in \mathbb{R}^3\)</span> の<strong>内積 (inner product)</strong> というのであった. <span class="math inline">\(\bs{a}\cdot\bs{b}\)</span> を <span class="math inline">\((\bs{a},\bs{b})\)</span> と書くこともある. また, ベクトル <span class="math inline">\(\bs{a}\)</span> の転置 <span class="math inline">\(\bs{a}^t\)</span> を用いて <span class="math inline">\(\bs{a}^t \bs{b}\)</span> と書いても良い. さて, 次元 <span class="math inline">\(d\)</span> が前後の文脈などから明らかなときには式( 1)において, <span class="math inline">\(\sum_{i=1}^3\)</span> を省略しても差し支えないように思える. そこで, 以降,</p>
 <p><span id="eq:naiseki"><span class="math display">\[
 \bs{a}\cdot\bs{b} = a_i b_i
 \qquad(2)\]</span></span></p>
@@ -43,7 +43,7 @@ c_i=\frac{a_jb_j}{a_ka_k}a_i \ \ \left(=\frac{a_1b_1+a_2b_2+a_3b_3}{a_1a_1+a_2a_
 \qquad(3)\]</span></span></p>
 </blockquote>
 <blockquote>
-<p>と書ける. ここに, <span class="math inline">\(j\)</span> と <span class="math inline">\(k\)</span> はダミーインデックス, <span class="math inline">\(i\)</span> はフリーインデックスである. なお, 式( 3) において, ダミーインデックスとして <span class="math inline">\(j\)</span> や <span class="math inline">\(k\)</span> を採用したことは本質的でなく, 例えば</p>
+<p>と書ける. ここで, <span class="math inline">\(j\)</span> と <span class="math inline">\(k\)</span> はダミーインデックス, <span class="math inline">\(i\)</span> はフリーインデックスである. なお, 式( 3) において, ダミーインデックスとして <span class="math inline">\(j\)</span> や <span class="math inline">\(k\)</span> を採用したことは本質的でなく, 例えば</p>
 </blockquote>
 <blockquote>
 <p><span class="math display">\[
@@ -88,7 +88,7 @@ c_i=\frac{a_j b_j}{a_ja_j}a_i
 \delta_{ij}a_j = a_i
 \qquad(5)\]</span></span></p>
 <p>となることが分かるであろう. すなわち, <strong><span class="math inline">\(\delta_{ij}\)</span> と <span class="math inline">\(j\)</span> を添字に持つベクトル (一般にはテンソル) の掛け算は, ベクトル (またはテンソル) の添字 <span class="math inline">\(j\)</span> を <span class="math inline">\(i\)</span> に置換したもの</strong>となる. 同様に, <span class="math inline">\(\delta_{ij}\)</span> と <span class="math inline">\(i\)</span> を添字に持つベクトル (一般にはテンソル) の掛け算は, ベクトル (またはテンソル) の添字 <span class="math inline">\(i\)</span> を <span class="math inline">\(j\)</span> に置換したものとなる. 式 ( 5) は今後しばしば使うことになる.</p>
-<p>2つめは交代記号 (alternating symbol) と呼ばれ、</p>
+<p>2 つめは交代記号 (alternating symbol) と呼ばれ、</p>
 <p><span id="eq:eijk"><span class="math display">\[
 e_{ijk}=
 \begin{cases}
@@ -129,7 +129,7 @@ a_1b_2-a_2b_1
 \]</span></p>
 <p>を計算してみると良いだろう.</p>
 <h2 id="微分演算子-nabla">微分演算子 <span class="math inline">\(\nabla\)</span></h2>
-<p>微分演算子 <span class="math inline">\(\nabla\)</span> を, 偏微分作用素 $ /partial x_i $ を成分にもつベクトルと解釈することにしよう. ただし, <span class="math inline">\(\nabla\)</span> は演算子 (あるいは作用素) なので, 作用する順序に注意する必要がある. 例えば, <span class="math inline">\(\nabla\cdot\bs{a}\)</span> と <span class="math inline">\(\bs{a}\cdot\nabla\)</span> の表すものは異なる (前者はスカラー, 後者は微分作用素). ここで, 例えばスカラー関数 <span class="math inline">\(f\)</span> の <span class="math inline">\(x_i \ (i=1,2,3)\)</span> による偏微分を, <span class="math display">\[
+<p>微分演算子 <span class="math inline">\(\nabla\)</span> を, 偏微分作用素 <span class="math inline">\(\partial/\partial x_i\)</span> を成分にもつベクトルと解釈することにしよう. ただし, <span class="math inline">\(\nabla\)</span> は演算子 (あるいは作用素) なので, 作用する順序に注意する必要がある. 例えば, <span class="math inline">\(\nabla\cdot\bs{a}\)</span> と <span class="math inline">\(\bs{a}\cdot\nabla\)</span> の表すものは異なる (前者はスカラー, 後者は微分作用素). ここで, 例えばスカラー関数 <span class="math inline">\(f\)</span> の <span class="math inline">\(x_i \ (i=1,2,3)\)</span> による偏微分を, <span class="math display">\[
 f,_i:=\frac{\partial f}{\partial x_i}
 \]</span> と書くことにしよう. この記法を用いれば, 勾配, 発散, 回転は以下のように簡潔に書くことができる.</p>
 <ul>
@@ -138,7 +138,7 @@ f,_i:=\frac{\partial f}{\partial x_i}
 <li>ベクトル値関数<span class="math inline">\(\bs{a}\)</span>の回転 (の第 <span class="math inline">\(i\)</span> 成分)： <span class="math inline">\((\text{rot} \ \bs{a})_i=(\text{curl} \ \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}\)</span></li>
 </ul>
 <p>ここで, 回転が <span class="math inline">\(e_{ijk}a_{j,k}\)</span> ではないことに注意しよう。<span class="math inline">\(k\)</span>, <span class="math inline">\(j\)</span> という順になることが分かりにくければ, <span class="math inline">\(e_{ijk}\frac{\partial}{\partial x_j} a_k\)</span> と書いてみると良いだろう.</p>
-<h2 id="ベクトル解析に現れる種々の公式">ベクトル解析に現れる種々の公式</h2>
+<h2 id="ベクトル解析に現れる種々の公式の導出">ベクトル解析に現れる種々の公式の導出</h2>
 <p>ここで紹介した記法と恒等式 ( 7) を用いると, ベクトル解析に現れる種々の公式を簡単に導出することができる.</p>
 <blockquote>
 <p><strong>例</strong>: <span class="math inline">\(\bs{a}\times\left(\bs{b}\times\bs{c}\right)=(\bs{a}\cdot\bs{c})\bs{b}-(\bs{a}\cdot\bs{b})\bs{c}\)</span></p>
@@ -188,7 +188,50 @@ f,_i:=\frac{\partial f}{\partial x_i}
 \]</span></p>
 </blockquote>
 <h2 id="積分公式">積分公式</h2>
-<p>Todo: Gaussの定理について書く.</p>
-<h2 id="課題">課題</h2>
+<p>ベクトル解析におけるもっとも重要な定理として, Gauss の (発散) 定理は以下のようである.</p>
+<p><span id="eq:gauss_theorem"><span class="math display">\[
+\int\int\int_V \text{div} \bs{F} \text{d}V = \int\int_S \bs{F}\cdot\bs{n} \text{d}S
+\qquad(10)\]</span></span></p>
+<p>ここに, <span class="math inline">\(\bs{F}: \mathbb{R}^3\rightarrow\mathbb{R}^3\)</span> はベクトル場, <span class="math inline">\(V\)</span> は <span class="math inline">\(\mathbb{R}^3\)</span> の有界領域, <span class="math inline">\(S:=\partial V\)</span> はその境界である. 単位法線ベクトル <span class="math inline">\(\bs{n}\)</span> は <span class="math inline">\(V\)</span> の外向きに定義した. ガウスの発散定理 ( 10) を添字を用いて表記すれば,</p>
+<p><span id="eq:gauss_theorem_index"><span class="math display">\[
+\int\int\int_V F_{i,i} \text{d}V = \int\int_S F_in_i \text{d}S
+\qquad(11)\]</span></span></p>
+<p>である. Gauss の(発散) 定理と書いたのは, 式 ( 11) において, 発散を取る前の</p>
+<p><span class="math display">\[
+\int\int\int_V F_1 \text{d}V = \int\int_S F_1n_1 \text{d}S
+\]</span></p>
+<p><span class="math display">\[
+\int\int\int_V F_2 \text{d}V = \int\int_S F_2n_2 \text{d}S
+\]</span></p>
+<p><span class="math display">\[
+\int\int\int_V F_3 \text{d}V = \int\int_S F_3n_3 \text{d}S
+\]</span></p>
+<p>もそれぞれ成立することを強調するためである. なお, 一次元の Gauss の定理 (微分積分学の基本定理) は</p>
+<p><span class="math display">\[
+\int_a^b \frac{\text{d}f}{\text{d}x} \text{d}x = f(b)-f(a)
+\]</span></p>
+<p>と書ける. 右辺を <span class="math inline">\(x=a \ (b)\)</span> における「法線」<span class="math inline">\(-1 \ (+1)\)</span> を乗じた <span class="math inline">\(f\)</span> の「点積分」と見做せば, これが Gauss の定理に他ならないことが分かるであろう.</p>
+<h2 id="演習問題">演習問題</h2>
+<p>ここで導入した添字記法と Einstein の総和規約を用いることで, 力学や電磁気学の記述が簡単になり, 計算の見通しが格段に良くなるのでぜひ習得して欲しい. 以下に練習用の問題をいくつか挙げておく.</p>
+<ol type="1">
+<li><p><span class="math inline">\(\bs{a}\)</span>, <span class="math inline">\(\bs{b}\)</span>, <span class="math inline">\(\bs{c}\in\mathbb{R}^3\rightarrow\mathbb{R}^3\)</span> をベクトル場とする. <span class="math inline">\((\bs{a}\times\bs{b})\times\bs{c}=(\bs{a}\cdot\bs{c})\bs{b}-(\bs{b}\cdot\bs{c})\bs{a}\)</span> を示せ.</p></li>
+<li><p><span class="math inline">\(\phi: \mathbb{R}^3\rightarrow\mathbb{R}\)</span> をスカラー場, <span class="math inline">\(\bs{u}\)</span>, <span class="math inline">\(\bs{v}: \mathbb{R}^3\rightarrow\mathbb{R}^3\)</span> をベクトル場とする. 以下の恒等式を証明せよ.</p>
+<ol type="1">
+<li><span class="math inline">\(\nabla\cdot(\phi \bs{v})=\nabla\phi\cdot\bs{v}+\phi \ \text{div} \ \bs{v}\)</span></li>
+<li><span class="math inline">\(\nabla\times(\phi \bs{v})=\nabla\phi\times\bs{v}+\phi \ (\nabla\times\bs{v})\)</span></li>
+<li><span class="math inline">\(\nabla\cdot(\bs{u}\times\bs{v})=\bs{v}\cdot(\nabla\times\bs{u})-\bs{u}\cdot(\nabla\times\bs{v})\)</span></li>
+<li><span class="math inline">\(\nabla\times\nabla\phi = \bs{0}\)</span></li>
+<li><span class="math inline">\(\nabla\cdot\nabla\times\bs{v} = 0\)</span></li>
+</ol></li>
+<li><p><span class="math inline">\(\bs{r}=(x_1, x_2, x_3)^t\)</span>, <span class="math inline">\(r=|\bs{r}|\)</span> (ただし <span class="math inline">\(\bs{r}\neq\bs{0}\)</span>) とする. また, <span class="math inline">\(\bs{a}\)</span> を (<span class="math inline">\(x_i\)</span> に依らない) 定ベクトルとする. 以下を計算せよ.</p>
+<ol type="1">
+<li><span class="math inline">\(\nabla r\)</span>   (ヒント: <span class="math inline">\(r^2=x_jx_j\)</span> であり, また <span class="math inline">\(x_{i,j}=\delta_{ij}\)</span> である.)</li>
+<li><span class="math inline">\(\nabla\cdot\bs{r}\)</span></li>
+<li><span class="math inline">\(\nabla\times\bs{r}\)</span></li>
+<li><span class="math inline">\(\nabla \ (\bs{a}\cdot\bs{r})\)</span></li>
+<li><span class="math inline">\((\bs{a}\times\nabla)\cdot\bs{r}\)</span></li>
+<li><span class="math inline">\(\nabla\times\left(\bs{a}\times\displaystyle\frac{\bs{r}}{r}\right)\)</span></li>
+</ol></li>
+</ol>
 </body>
 </html>
