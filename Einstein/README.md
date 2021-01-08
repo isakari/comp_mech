@@ -259,3 +259,5 @@ $$
    4. $\nabla \ (\bs{a}\cdot\bs{r})$
    5. $(\bs{a}\times\nabla)\cdot\bs{r}$
    6. $\nabla\times\left(\bs{a}\times\displaystyle\frac{\bs{r}}{r}\right)$
+
+4. Stokes の定理を Einstein の総和規約を用いて記述せよ. 
