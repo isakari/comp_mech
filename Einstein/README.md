@@ -4,7 +4,7 @@ $$
 
 # Einstein の総和規約
 
-本章では, 力学や電磁気学及びその数値解法を記述する際に便利な **Einstein の総和規約**について説明する. なお, 本稿では $\mathbb{R}^d$ のベクトルを太字のアルファベットで $\bs{a}$ などと書く. また, ベクトル $\bs{a}$ の第 $i$ 成分を細字のアルファベットを用いて $a_i~(i=1,\cdots,d)$ などと書く. すなわち, 
+本章では, 力学や電磁気学及びその数値解法を記述する際に便利な **Einstein の総和規約**について説明する. なお, 本稿では $\mathbb{R}^d$ のベクトルを太字のアルファベットで $\bs{a}$ などと書く. また, ベクトル $\bs{a}$ の第 $i$ 成分を細字のアルファベットを用いて $a_i \ (i=1,\cdots,d)$ などと書く. すなわち, 
 
 $$
 \bs{a}=\begin{pmatrix}a_1\\a_2\\a_3\end{pmatrix}
@@ -64,7 +64,7 @@ $${#eq:kronecker}
 
 > **問**: $\delta_{ii}$ の値は?
 
-> **解**: 前述の Einstein の総和規約を適用すれば, $\delta_{ii}~\left(=\delta_{11}+\delta_{22}+\delta_{33}\right)=3$ である. $\delta_{ii}=1$ としないように気をつけよう. 
+> **解**: 前述の Einstein の総和規約を適用すれば, $\delta_{ii} \ \left(=\delta_{11}+\delta_{22}+\delta_{33}\right)=3$ である. $\delta_{ii}=1$ としないように気をつけよう. 
 
 ここで, Kronecker のデルタ $\delta_{ij}$ を成分に持つ行列 $\mathsf{E}$ を考える. 行列 $\mathsf{E}$ を成分表示すれば, 
 
@@ -90,8 +90,8 @@ $${#eq:deltaijaj}
 $$
 e_{ijk}=
 \begin{cases}
- 1 & \text{if}~(i,j,k)=(1,2,3)~\text{or}~(2,3,1)~\text{or}~(3,1,2)\\
--1 & \text{if}~(i,j,k)=(2,1,3)~\text{or}~(3,2,1)~\text{or}~(1,3,2)\\
+ 1 & \text{if} \ (i,j,k)=(1,2,3) \ \text{or} \ (2,3,1) \ \text{or} \ (3,1,2)\\
+-1 & \text{if} \ (i,j,k)=(2,1,3) \ \text{or} \ (3,2,1) \ \text{or} \ (1,3,2)\\
  0 & \text{otherwise}
 \end{cases}
 $${#eq:eijk}
@@ -142,15 +142,15 @@ $$
 
 ## 微分演算子 $\nabla$
 
-微分演算子 $\nabla$ を, 偏微分作用素 $ \partial/partial x_i $ を成分にもつベクトルと解釈することにしよう. ただし, $\nabla$ は演算子 (あるいは作用素) なので, 作用する順序に注意する必要がある. 例えば, $\nabla\cdot\bs{a}$ と $\bs{a}\cdot\nabla$ の表すものは異なる (前者はスカラー, 後者は微分作用素). ここで, 例えばスカラー関数 $f$ の $x_i~(i=1,2,3)$ による偏微分を, 
+微分演算子 $\nabla$ を, 偏微分作用素 $ \partial/partial x_i $ を成分にもつベクトルと解釈することにしよう. ただし, $\nabla$ は演算子 (あるいは作用素) なので, 作用する順序に注意する必要がある. 例えば, $\nabla\cdot\bs{a}$ と $\bs{a}\cdot\nabla$ の表すものは異なる (前者はスカラー, 後者は微分作用素). ここで, 例えばスカラー関数 $f$ の $x_i \ (i=1,2,3)$ による偏微分を, 
 $$
 f,_i:=\frac{\partial f}{\partial x_i}
 $$
 と書くことにしよう. この記法を用いれば, 勾配, 発散, 回転は以下のように簡潔に書くことができる. 
 
 - スカラー値関数 $f$ の勾配 (の第 $i$ 成分):  $(\text{grad} f)_i:=(\nabla f)_i=f,_i$
-- ベクトル値関数 $\bs{a}$ の発散: $\text{div~} \bs{a}:=\nabla\cdot\bs{a}=a_{i,i}$
-- ベクトル値関数$\bs{a}$の回転 (の第 $i$ 成分)： $(\text{rot~} \bs{a})_i=(\text{curl~} \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}$
+- ベクトル値関数 $\bs{a}$ の発散: $\text{div} \ \bs{a}:=\nabla\cdot\bs{a}=a_{i,i}$
+- ベクトル値関数$\bs{a}$の回転 (の第 $i$ 成分)： $(\text{rot} \ \bs{a})_i=(\text{curl} \ \bs{a})_i:=(\nabla\times\bs{a})_i=e_{ijk}a_{k,j}$
 
 ここで, 回転が $e_{ijk}a_{j,k}$ ではないことに注意しよう。$k$, $j$ という順になることが分かりにくければ, $e_{ijk}\frac{\partial}{\partial x_j} a_k$ と書いてみると良いだろう. 
 
@@ -163,13 +163,13 @@ $$
 > 証明:
 > $$
 > \begin{align}
-> \text{左辺の第~} i \text{~成分}
+> \text{左辺の第} \ i \ \text{成分}
 > &=e_{ijk}a_j(\bs{b}\times \bs{c})_k\\
 > &=e_{ijk}a_je_{kpq}b_pc_q\\
 > &=e_{kij}e_{kpq}a_jb_pc_q\\
 > &=(\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp})a_jb_pc_q\\
 > &=a_jc_jb_i-a_jb_jc_i
-> =\text{右辺の第~} i \text{~成分}
+> =\text{右辺の第} \ i \ \text{成分}
 > \end{align}
 > $$
 
@@ -192,13 +192,13 @@ $$
 > 証明: 
 > $$
 > \begin{align}
-> \text{左辺の第~} i \text{~成分}
+> \text{左辺の第} \ i \ \text{成分}
 > &=e_{ijk}(\nabla\times\bs{a})_{k,j}\\
 > &=e_{ijk}(e_{kpq}a_{q,p}),_{j}\\
 > &=e_{kij}e_{kpq}a_{q,pj}\\
 > &=(\delta_{ip}\delta_{jq}-\delta_{iq}\delta_{jp})a_{q,pj}\\
 > &=a_{j,ij}-a_{i,jj}\\
-> &=(a_{j,j})_{,i}-a_{i,jj}=\text{右辺の第~} i \text{~成分}
+> &=(a_{j,j})_{,i}-a_{i,jj}=\text{右辺の第} \ i \ \text{成分}
 > \end{align}
 > $$
 
