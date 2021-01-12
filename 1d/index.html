@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>README</title>
   <style type="text/css">code{white-space: pre;}</style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -23,17 +23,17 @@
 <p><span id="eq:governing_eq"><span class="math display">\[
 \frac{\text{d}^2 u(x)}{\text{d} x^2} = -f(x)
 \qquad(1)\]</span></span></p>
-<p>を対象とした有限要素法について述べる. ここに, <span class="math inline">\(u(x)\)</span> は未知のスカラー関数, <span class="math inline">\(f\)</span> は既知のスカラー関数である.</p>
+<p>を対象とした有限要素法について述べる. ここに, <span class="math inline">\(u(x)\)</span> は未知のスカラー関数, <span class="math inline">\(f(x)\)</span> は既知のスカラー関数である.</p>
 <h2 id="境界値問題の定式化">境界値問題の定式化</h2>
 <p>はじめに, 弦のたわみが式 ( 1) で記述される物理現象 (の一つ) であることを確認しよう. 今, 図 1 のように, 両端が固定された長さ 1 の弦に, 下向き分布荷重 <span class="math inline">\(q(x)\)</span> が作用した時, 点 <span class="math inline">\(x\)</span> におけるたわみ <span class="math inline">\(v(x)\)</span> を求める問題を考えよう. なお, 荷重は下向きに作用するので, 縦軸は下向きを正にとる.</p>
 <figure>
-<img src="./figs/setting.jpeg" id="fig:setting" alt="図 1: 分布荷重を受けてたわむ弦" /><figcaption aria-hidden="true">図 1: 分布荷重を受けてたわむ弦</figcaption>
+<img src="./figs/setting.jpeg" alt="図 1: 分布荷重を受けてたわむ弦" id="fig:setting" /><figcaption>図 1: 分布荷重を受けてたわむ弦</figcaption>
 </figure>
 <p>微小領域 <span class="math inline">\([x,x+\text{d}x]\)</span> における弦に作用する力の釣り合いを考える (図 2).</p>
 <figure>
-<img src="./figs/equiv.jpeg" id="fig:equiv" alt="図 2: 微小領域における力のつりあい" /><figcaption aria-hidden="true">図 2: 微小領域における力のつりあい</figcaption>
+<img src="./figs/equiv.jpeg" alt="図 2: 微小領域における力のつりあい" id="fig:equiv" /><figcaption>図 2: 微小領域における力のつりあい</figcaption>
 </figure>
-<p>弦に働く張力を <span class="math inline">\(T\)</span> と書き, 変形が微小であることを仮定すれば <span class="math inline">\(\sin\theta\simeq\tan\theta=\displaystyle\frac{\text{d}u(x)}{\text{d}x}\)</span> だから, 左端 <span class="math inline">\(x\)</span> に作用する張力の鉛直方向成分は <span class="math inline">\(-T\sin\theta\simeq-T\dfrac{u(x)}{x}\)</span> と書ける. 同様にして, 右端 <span class="math inline">\(x+\text{d}x\)</span> に作用する力の鉛直方向成分は</p>
+<p>弦に働く張力を <span class="math inline">\(T\)</span> と書き, 変形が微小であることを仮定すれば <span class="math inline">\(\sin\theta\simeq\tan\theta=\displaystyle\frac{\text{d}u(x)}{\text{d}x}\)</span> だから, 左端 <span class="math inline">\(x\)</span> に作用する張力の鉛直方向成分は <span class="math inline">\(-T\sin\theta\simeq-T\dfrac{u(x)}{x}\)</span> と書ける. 同様にして, 右端 <span class="math inline">\(x+\text{d}x\)</span> に作用する張力の鉛直方向成分は</p>
 <p><span class="math display">\[
 T\dfrac{u(x+\text{d}x)}{x}
 \simeq T\left(\dfrac{u(x)}{x}+\ddfrac{u(x)}{x}\text{d}x\right)
@@ -47,39 +47,106 @@ T\dfrac{u(x+\text{d}x)}{x}
 <p><span id="eq:bc"><span class="math display">\[
 u(0)=u(1)=0
 \qquad(2)\]</span></span></p>
-<p>である. 微分方程式 ( 1) と境界条件 ( 2) の組みを<strong>境界値問題 (boudnary value problem; BVP)</strong> と呼ぶ. 有限要素法は境界値問題の数値解法のひとつである. なお, 式 ( 2) のように, 未知関数そのものの境界値を与える境界条件を Dirichlet 境界条件という. 一方で, 未知関数の境界値での微分値を与える境界条件は Neumann 境界条件, Dirichlet 条件と Neumann 条件の線形結合を与える境界条件は Robin 境界条件と呼ばれる.</p>
+<p>である. 微分方程式 ( 1) と境界条件 ( 2) の組みを<strong>境界値問題 (boudnary value problem; BVP)</strong> と呼ぶ. 有限要素法は境界値問題の数値解法のひとつである. なお, 式 ( 2) のように, 未知関数そのものの境界値を与える境界条件を Dirichlet 境界条件という. 一方で, 未知関数の境界での微分値を与える境界条件は Neumann 境界条件, Dirichlet 条件と Neumann 条件の線形結合を与える境界条件は Robin 境界条件と呼ばれる.</p>
 <blockquote>
 <p><strong>問</strong>: <span class="math inline">\(f(x)=1\)</span> のとき, 上の Dirichlet 境界値問題の解を解析的に (=手計算で積分し) 求めよ. 特に, <span class="math inline">\(x=1/2\)</span> における <span class="math inline">\(u\)</span> の値はいくらか?</p>
 </blockquote>
 <blockquote>
-<p><strong>解</strong>: <span class="math inline">\(u(x)=-\displaystyle\frac{1}{2}x^2+\displaystyle\frac{1}{2}x\)</span>,  <span class="math inline">\(u(1/2)=1/8\)</span></p>
+<p><strong>解</strong>: <span class="math inline">\(u(x)=-\displaystyle\frac{1}{2}x^2+\displaystyle\frac{1}{2}x\)</span> であり, 特に <span class="math inline">\(u(1/2)=1/8\)</span> となる.</p>
 </blockquote>
 <h2 id="重み付き残差法-weighted-residual-method-wrm-と-galerkin-法">重み付き残差法 (weighted residual method; WRM) と Galerkin 法</h2>
 <p>先の「問」においては, 解析的に微分方程式を解くことができた. しかし, 一般にはこれは難しい. そこで <span class="math inline">\(u\)</span> をなんらかの意味で近似する関数 <span class="math inline">\(\tilde{u}\)</span> を求めることが必要となる. 以下, <span class="math inline">\(\tilde{u}\)</span> を求める方法の一つである重み付き残差法について解説する.</p>
-<p>まず, <span class="math inline">\(\tilde{u}\)</span> が <span class="math inline">\(u\)</span> が満たすべき境界条件 ( 2) を満足することを要請しよう. すると, <span class="math inline">\(g_i(0)=g_i(1)=0\)</span> を満たす関数 <span class="math inline">\(g_i(x)\)</span> (例えば$　g_i(x)=x^{i+1}(1-x)$ など) を用いて構成される</p>
+<p>まず, <span class="math inline">\(\tilde{u}\)</span> が <span class="math inline">\(u\)</span> が満たすべき境界条件 ( 2) を満足することを要請しよう. すると, <span class="math inline">\(g_i(0)=g_i(1)=0\)</span> を満たす関数 <span class="math inline">\(g_i(x)\)</span> (例えば <span class="math inline">\(g_i(x)=x^{i+1}(1-x)\)</span> など) を用いて構成される</p>
 <p><span id="eq:aigi"><span class="math display">\[
 \sum_{i=0}^{n-1} a_i g_i(x)
 \qquad(3)\]</span></span></p>
 <p>は <span class="math inline">\(\tilde{u}\)</span> の候補となる. ここに, <span class="math inline">\(a_i\in\mathbb{R}\)</span> は未知の係数である. 未知係数 <span class="math inline">\(a_i\)</span> を求めるため, ここでは<strong>重み付き残差法</strong>を採用する. その他の方法としては, 微分方程式の定義された領域内部の有限個の点 <span class="math inline">\(x_i \ (i=0,\cdots, n-1)\)</span> において微分方程式を満たすように <span class="math inline">\(a_i\)</span> を決める<strong>選点法</strong>が代表的である.</p>
-<p>適当な重み関数 <span class="math inline">\(v_i(x)\)</span> を <span class="math inline">\(i=0, \cdots, n-1\)</span> の <span class="math inline">\(n\)</span> 種類準備し, 微分方程式 ( 1) の両辺にこれを乗じ, 微分方程式の定義された領域 <span class="math inline">\([0, 1]\)</span> において積分すると以下を得る.</p>
+<p>はじめに, 適当な重み関数 <span class="math inline">\(v_i(x)\)</span> を <span class="math inline">\(i=0, \cdots, n-1\)</span> の <span class="math inline">\(n\)</span> 種類準備する. 次に, 微分方程式 ( 1) の両辺にこれを乗じ, 微分方程式の定義された領域 <span class="math inline">\([0, 1]\)</span> において積分すると以下を得る.</p>
 <p><span id="eq:wre"><span class="math display">\[
 \int_0^1 v_i \left( \ddfrac{\tilde{u}(x)}{x}+f(x) \right) \text{d}x=0
 \qquad(4)\]</span></span></p>
 <p>式 ( 4) を<strong>重み付き残差式</strong>と呼ぶ. これを満たすように未知係数 <span class="math inline">\(a_i\)</span> を定める方法を<strong>重み付き残差法</strong>である.</p>
 <blockquote>
-<p><strong>例</strong>: <span class="math inline">\(f(x)=1\)</span>の場合を考える. <span class="math inline">\(n=1\)</span>, <span class="math inline">\(g_i(x)=\sin i \pi x\)</span> とし,</p>
+<p><strong>例</strong>: <span class="math inline">\(f(x)=1\)</span>の場合を考える. <span class="math inline">\(n=1\)</span>, <span class="math inline">\(g_i(x)=\sin (i+1) \pi x\)</span> とし, 重み付き残差法を実行せよ. ただし, ここでは重み関数は以下のように選べ.</p>
 </blockquote>
 <blockquote>
-<ul>
-<li><strong>v_i=1</strong></li>
-</ul>
+<ol type="1">
+<li><strong><span class="math inline">\(v_i(x)=1\)</span></strong></li>
+</ol>
 </blockquote>
 <blockquote>
-<ul>
-<li><strong>v_i=g_i</strong></li>
-</ul>
+<ol start="2" type="1">
+<li><strong><span class="math inline">\(v_i(x)=g_i(x)\)</span></strong></li>
+</ol>
+</blockquote>
+<blockquote>
+<p><strong>解</strong></p>
+</blockquote>
+<blockquote>
+<ol type="1">
+<li></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>重み付き残差式 ( 4) より,</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[ 
+\begin{align}
+0
+&amp;=\int_0^1 \left( \ddfrac{(a_0 \sin\pi x)}{x}+1 \right) \text{d}x\\
+&amp;=\int_0^1 \left( -a_0\pi^2\sin\pi x+1 \right) \text{d}x\\
+&amp;=\left[ a_0\pi\cos\pi x +x  \right]_0^1\\
+&amp;=-2a_0\pi+1
+\end{align}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>であるから, <span class="math inline">\(a_0=1/2\pi\)</span> を得る. この時, <span class="math inline">\(u\)</span> の近似解は <span class="math inline">\(\tilde{u}(x)=\displaystyle\frac{1}{2\pi}\sin\pi x\)</span> となる. 特に, <span class="math inline">\(\tilde{u}(1/2)=1/2\pi\)</span> であるが, ここで得た近似解と先に求めた「正解」との相対誤差は <span class="math display">\[
+\frac{|1/2\pi-1/8|}{1/8} \simeq 27.3\%
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>ほどである.</p>
+</blockquote>
+<blockquote>
+<ol start="2" type="1">
+<li></li>
+</ol>
+</blockquote>
+<blockquote>
+<p>重み付き残差式 ( 4) より,</p>
+</blockquote>
+<blockquote>
+<p><span class="math display">\[ 
+\begin{align}
+0
+&amp;=\int_0^1 \sin\pi x\left( \ddfrac{(a_0 \sin\pi x)}{x}+1 \right) \text{d}x\\
+&amp;=\int_0^1 \sin\pi x \left( -a_0\pi^2\sin\pi x+1 \right) \text{d}x\\
+&amp;=\left[ -\frac{a_0\pi}{2}x-\frac{1}{\pi}\cos\pi x \right]_0^1\\
+&amp;=-\frac{a_0\pi^2}{2}+\frac{2}{\pi}
+\end{align}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>であるから, <span class="math inline">\(a_0=4/\pi^3\)</span> を得る. この時, <span class="math inline">\(u\)</span> の近似解は <span class="math inline">\(\tilde{u}(x)=\displaystyle\frac{4}{\pi^3}\sin\pi x\)</span> となる. 特に, <span class="math inline">\(\tilde{u}(1/2)=4/\pi^3\)</span> であるが, ここで得た近似解と先に求めた「正解」との相対誤差は <span class="math display">\[
+\frac{|4/\pi^3-1/8|}{1/8} \simeq 3.20\%\]</span> ほどである.</p>
+</blockquote>
+<p><img src="./figs/example.png" alt="例題の解" id="fig:example" /> <!-- 例題の 1, 2 で得られた「数値解」と「正解」の様子を [@fig:example] に示す.  --></p>
+<p>例の 2 で見たように, 解を展開するのに用いた基底 <span class="math inline">\(g_i\)</span> と同じ関数を重みとする方法を <strong>Galerkin 法</strong> という. Galerkin 法が高精度であることはこれらの例からよく分かるであろう.</p>
+<h3 id="演習問題">演習問題</h3>
+<blockquote>
+<p>先の問題に対し, <span class="math inline">\(\tilde{u}=a_0 x(1-x) + a_1 x^2(1-x)\)</span> とした時, 重み付き残差式 ( 4) を Galerkin 法で離散化し, 未知係数 <span class="math inline">\(a_i\)</span> を求めよ.</p>
 </blockquote>
 <h2 id="有限要素法">有限要素法</h2>
+<p>さて, 前項では, 重み付き残差式 ( 4) をそのまま利用した. ここでは, これを少し変形してみよう. ここでは, 重み関数 <span class="math inline">\(v_i\)</span> として, Dirichlet 境界条件が課された境界において, <span class="math inline">\(v_i=0\)</span> を満たすものを用いると<strong>約束</strong>しよう. この時, 重み付き残差式 ( 4) を部分積分して得られる</p>
+<p><span id="eq:weakform"><span class="math display">\[
+\begin{align}
+&amp;0=\left[ u&#39;(x)v_i(x) \right]_0^1 - \int_0^1 (v_i&#39;(x)u&#39;(x)-v_i(x)f(x)) \text{d}x\\
+&amp;\Leftrightarrow \int_0^1 v_i&#39;(x)u&#39;(x) \text{d}x = \int_0^1 v_i(x)f(x) \text{d}x \ \ \ (\because v_i(0)=v_i(1)=0)
+\end{align}
+\qquad(5)\]</span></span></p>
+<p>を<strong>弱形式</strong>という.</p>
 <hr />
 <p><a href="../index.html">../</a></p>
 </body>
