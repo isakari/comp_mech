@@ -211,7 +211,7 @@ g_2(x)&amp;=\begin{cases}
 <p>を用い, 弱形式を Galerkin 法で離散化することにより近似解 <span class="math inline">\(\tilde{u}\)</span> を求め, その誤差について論ぜよ.</p>
 </blockquote>
 <p>ここで紹介した基底関数は, 先に用いた <span class="math inline">\(x(x-1)\)</span> などとは異なり, その台が微分方程式 ( 1) の定義域全体にわたらない. すなわち, 区間 <span class="math inline">\(\mathrm{supp.}(g_i):=\{x \mid g_i(x)&gt;0\}\)</span> が <span class="math inline">\([0,1]\)</span> に一致しない. このような性質を<strong>局所的な台を持つ (locally supported)</strong> と言う. 基底関数が局所的な台を持つとき, 有限要素法に由来する代数方程式 ( 6) の係数行列は<strong>疎行列 (sparse matrix)</strong> となる. すなわち, 行列の成分のほとんどが零となる. 通常, 代数方程式 ( 6) の求解においては, 係数行列が疎であることを利用した高速なアルゴリズムを用いる.</p>
-<p>以上をまとめると, 有限要素法とは, 微分方程式 (一般には偏微分方程式) の境界値問題の近似解を求める方法であり, 局所的な台を持つ基底関数で解を展開し, <strong>重み付き残差式</strong>に対応する<strong>弱形式</strong>を, <strong>Galerkin 法</strong>で離散化して得られる代数方程式を計算機を用いて解く.</p>
+<p>以上をまとめると, 有限要素法とは, 微分方程式 (一般には偏微分方程式) の境界値問題の近似解を求める方法であり, 局所的な台を持つ基底関数で解を展開し, <strong>重み付き残差式</strong>に対応する<strong>弱形式</strong>を, <strong>Galerkin 法</strong>で離散化して得られる代数方程式を計算機を用いて解く方法である.</p>
 <h3 id="演習問題3">演習問題3</h3>
 <blockquote>
 <p>次の微分方程式の境界値問題</p>
@@ -227,7 +227,7 @@ u(0)=u(1)=0
 \end{align}
 \]</span></p>
 <blockquote>
-<p>に対する, 適当な基底関数を用いて有限要素法を実行し, <span class="math inline">\(u\)</span> の近似解を求めよ.</p>
+<p>に対し, 適当な基底関数を用いて有限要素法を実行し, <span class="math inline">\(u\)</span> の近似解を求めよ.</p>
 </blockquote>
 <hr />
 <p><a href="../index.html">../</a></p>

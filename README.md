@@ -3,7 +3,7 @@
 ## [1. イントロダクション: １次元問題に対する有限要素法](1d/README.md)
 
 ## 2. 数学的な準備
-* Gauss-Legendre の数値積分公式
+* [Gauss-Legendre の数値積分公式](GLQ/README.md)
 * [Einstein の総和規約](Einstein/README.md)
 
 ## 3. 連続体力学

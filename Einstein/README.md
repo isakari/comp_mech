@@ -216,18 +216,18 @@ $$
 \int\int\int_V F_{i,i} \text{d}V = \int\int_S F_in_i \text{d}S
 $${#eq:gauss_theorem_index}
 
-である. Gauss の(発散) 定理と書いたのは, 式 ([@eq:gauss_theorem_index]) において, 発散を取る前の
+である. Gauss の(発散) 定理と書いたのは, 式 ([@eq:gauss_theorem_index]) において, 和を取る前の
 
 $$
-\int\int\int_V F_1 \text{d}V = \int\int_S F_1n_1 \text{d}S
-$$
-
-$$
-\int\int\int_V F_2 \text{d}V = \int\int_S F_2n_2 \text{d}S
+\int\int\int_V F_{1,1} \text{d}V = \int\int_S F_1n_1 \text{d}S
 $$
 
 $$
-\int\int\int_V F_3 \text{d}V = \int\int_S F_3n_3 \text{d}S
+\int\int\int_V F_{2,2} \text{d}V = \int\int_S F_2n_2 \text{d}S
+$$
+
+$$
+\int\int\int_V F_{3,3} \text{d}V = \int\int_S F_3n_3 \text{d}S
 $$
 
 もそれぞれ成立することを強調するためである. なお, 一次元の Gauss の定理 (微分積分学の基本定理) は
