@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>README</title>
+  <style type="text/css">code{white-space: pre;}</style>
+  <style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+<link rel="stylesheet" href="github-markdown.css">
+</head>
+<body>
+<p><span class="math display">\[
+\newcommand{\bs}[1]{\boldsymbol{#1}}
+\newcommand{\dfrac}[2]{\displaystyle\frac{\text{d}{#1}}{\text{d}{#2}}}
+\newcommand{\ddfrac}[2]{\displaystyle\frac{\text{d}^2{#1}}{\text{d}{#2}^2}}
+\newcommand{\dintegral}[3]{\int_{#1}^{#2} {#3} \mathrm{d}x}
+\]</span></p>
+<h1 id="数学的な準備-gauss-legendre-の数値積分公式">2. 数学的な準備: Gauss-Legendre の数値積分公式</h1>
+<p>有限要素法では, 弱形式を離散化して得られる代数方程式を数値的に (= 一般には計算機を用いて) 解くことで (偏) 微分方程式の境界値問題の近似解を得る. その際, 代数方程式の係数行列や右辺ベクトルの成分は積分の形で書かれる. <a href="../1d/index.html">1. イントロダクション</a>で見たような簡単な問題の場合はこれらの積分を解析的に評価できるが, 一般に積分を解析的に実行することは容易ではない. そこで, これらの積分 (の近似) を数値的に求める方法が重要となる. そのような方法は <strong>数値積分公式</strong>, <strong>求積法 (quadrature rule)</strong> などと呼ばれる. ここでは, 有限要素法において用いられる Gauss-Legendre 数値積分公式について解説する.</p>
+<h2 id="イントロダクション-区分求積分と台形公式">イントロダクション: 区分求積分と台形公式</h2>
+<p>与えられた関数 <span class="math inline">\(f(x)\)</span> の区間 <span class="math inline">\([a,b]\)</span> にわたる定積分</p>
+<p><span id="eq:integral"><span class="math display">\[
+I=\dintegral{a}{b}{f(x)}
+\qquad(1)\]</span></span></p>
+<p>に対する数値積分公式は以下のようである.</p>
+<p><span id="eq:nintegral"><span class="math display">\[
+I\simeq\sum_{i=1}^N f(x_i) w_i
+\qquad(2)\]</span></span></p>
+<p>ここに, <span class="math inline">\(a\le x_i\le b\)</span> は <strong>積分点</strong> あるいは <strong>分点</strong>, <span class="math inline">\(w_i\)</span> は <strong>重み</strong> と呼ばれる. また, 分点を <span class="math inline">\(N\)</span> 個用いる数値積分公式を <span class="math inline">\(N\)</span> 次の公式と呼ぶことがある.</p>
+<p>最も単純な数値積分公式 (すなわち, 公式 ( 1) の積分点, 重みの定め方) は <strong>区分求積法</strong> であろう. 区分求積では区間 <span class="math inline">\([a,b]\)</span> を <span class="math inline">\(N\)</span> 等分割し, 例えば, <span class="math inline">\(x_i=a+\displaystyle\frac{2i-1}{2N}(b-a)\)</span>, <span class="math inline">\(w_i=\displaystyle\frac{b-a}{N}\)</span> と選ぶ (図 1).</p>
+<figure>
+<img src="./figs/kubunkyuseki.jpeg" id="fig:kubunkyuseki" alt="図 1: 区分求積" /><figcaption aria-hidden="true">図 1: 区分求積</figcaption>
+</figure>
+<p>また, 同様に区間 <span class="math inline">\([a,b]\)</span> を <span class="math inline">\(N\)</span> 等分割し, <span class="math inline">\(x_i=a+\displaystyle\frac{i-1}{N-1}(b-a)\)</span>, <span class="math inline">\(w_0=w_N=\displaystyle\frac{b-a}{2(N-1)}\)</span>, <span class="math inline">\(w_1=w_2=\cdots=w_{N-1}=\displaystyle\frac{b-a}{N-1}\)</span>とする <strong>台形公式</strong> も有名な数値積分公式である(図 2).</p>
+<figure>
+<img src="./figs/daikeikoushiki.jpeg" id="fig:daikeikoushiki" alt="図 2: 台形公式" /><figcaption aria-hidden="true">図 2: 台形公式</figcaption>
+</figure>
+<p>図 1 と 図 2 を比較すれば, 区分求積よりも台形公式の方が積分の精度は良さそうである. しかし, 台形公式を用いた場合, 式 ( 1) で与えられる積分を <strong>厳密に</strong> 計算できるのは被積分関数 <span class="math inline">\(f(x)\)</span> が区分的に一次関数である場合に限られる. では, あるクラスの関数 <span class="math inline">\(f\)</span> の定積分を厳密に (=誤差0で) 計算できる数値積分公式は存在するだろうか? 実は, <span class="math inline">\(N\)</span> 次の Gauss-Legendre の数値積分公式は, <strong><span class="math inline">\(f\)</span> が <span class="math inline">\(2N-1\)</span> 次以下の多項式であるならば厳密な積分値を与える</strong> ように設計された数値積分公式である. 次節で, そのような分点・重みの定め方について見てみよう.</p>
+<h2 id="gauss-legendre-の数値積分公式">Gauss-Legendre の数値積分公式</h2>
+<h3 id="lagrange-補間">Lagrange 補間</h3>
+<p>本節では, Gauss-Legendre の数値積分公式を記述する上で必要となる Lagrange 補間について確認する. Lagrange 補間とは, 与えられた相異なる点 <span class="math inline">\((x_i, f_i)\)</span> <span class="math inline">\((i=1,\cdots,n)\)</span> に対し, <span class="math inline">\(f(x_i)=f_i\)</span> を満たす <span class="math inline">\(n-1\)</span> 次多項式, およびこれを求める手順のことを言う. 例えば, <span class="math inline">\(N=3\)</span> の場合を考えてみよう. この時, <span class="math inline">\(\mathbb{R}^2\)</span> の <span class="math inline">\(3\)</span> つの点 <span class="math inline">\((x_1, f_1)\)</span>, <span class="math inline">\((x_2, f_2)\)</span>, <span class="math inline">\((x_3, f_3)\)</span> を通る <span class="math inline">\(2\)</span> 次多項式 <span class="math inline">\(f(x)=a_2x^2+a_1x+a_0\)</span> を求めれば良い. 定義に従って, 連立方程式 <span class="math inline">\(f(x_i)=f_i\)</span> を未知係数 <span class="math inline">\(a_0, a_1, a_2\)</span> について解いても良いが, そのような多項式が一意に定まることを考慮すれば,</p>
+<p><span id="eq:lagrange3"><span class="math display">\[
+f(x)
+=\frac{(x-x_2)(x-x_3)}{(x_1-x_2)(x_1-x_3)}f_1
++\frac{(x-x_3)(x-x_1)}{(x_2-x_3)(x_2-x_1)}f_2
++\frac{(x-x_1)(x-x_2)}{(x_3-x_1)(x_3-x_2)}f_3
+\qquad(3)\]</span></span></p>
+<p>とすれば良いことが直ちに分かる. 一般の <span class="math inline">\(N\)</span> に対しては,</p>
+<p><span id="eq:lagrangen"><span class="math display">\[
+f(x)=\sum_{i=1}^{N} \prod_{j\ne i}\frac{x-x_j}{x_i-x_j}
+\qquad(4)\]</span></span></p>
+<p>とすれば良い.</p>
+<blockquote>
+<p><strong>問</strong>: <span class="math inline">\(N=2\)</span> のときは?</p>
+</blockquote>
+<blockquote>
+<p><strong>解</strong>: <span class="math inline">\(f(x)=\frac{(x-x_2)}{(x_1-x_2)}f_1+\frac{(x-x_1)}{(x_2-x_1)}f_2\)</span></p>
+</blockquote>
+<h3 id="legendre-多項式">Legendre 多項式</h3>
+<p>次に, もう一つの鍵となる Legendre 多項式を導入する. Legendre 多項式は <strong>直交多項式</strong> の一種であり, <span class="math inline">\(n\)</span> 次の Legendre 多項式 <span class="math inline">\(p_n(x)\)</span> とは <span class="math inline">\(k=0,\cdots, n-1\)</span> に対して以下を満たすものである.</p>
+<p><span id="eq:tyokkou"><span class="math display">\[
+\dintegral{-1}{1}{p_n(x)p_k(x)}=0
+\qquad(5)\]</span></span></p>
+<p>式 ( 5) の左辺は, 関数 <span class="math inline">\(p_n\)</span> と <span class="math inline">\(p_k\)</span> の内積と見なすことができ, これが零であることから <span class="math inline">\(p_n\)</span> は <strong>直交</strong> 多項式と呼ばれる. 式 ( 5) を満たす <span class="math inline">\(p_n\)</span> の定数倍はまたこれを満足することから, <span class="math inline">\(p_n\)</span> には定数倍の自由度がある. ここでは,</p>
+<p><span id="eq:seikika"><span class="math display">\[
+p_n(1)=1
+\qquad(6)\]</span></span></p>
+<p>を用いてこれを正規化する. 正規化の方法は, 文献に依って ( 6) と異なるため注意が必要である. また, ここで定義した <span class="math inline">\({p_n}\)</span> は正規直交基底を為さない (すなわち, <span class="math inline">\(\displaystyle\dintegral{-1}{1}{p_n(x)p_n(x)}\neq 1\)</span> である) ことにも注意されたい.</p>
+<blockquote>
+<p><strong>問</strong>: Legendre 多項式の定義 ( 5), ( 6) を参照し, <span class="math inline">\(p_0\)</span>, <span class="math inline">\(p_1\)</span>, <span class="math inline">\(p_2\)</span> を陽に書け.</p>
+</blockquote>
+<blockquote>
+<p><strong>解</strong>:</p>
+</blockquote>
+<p><span class="math display">\[
+\begin{align}
+p_0(x)&amp;=1\\
+p_1(x)&amp;=x\\
+p_2(x)&amp;=\frac{1}{2}(3x^2-1)
+\end{align}
+\]</span></p>
+<p>任意の <span class="math inline">\(n\)</span> に対して Legendre 多項式 <span class="math inline">\(p_n(x)\)</span> の陽な表現を生成する公式は Rodrigues の公式と呼ばれ, 以下のようである.</p>
+<p><span id="eq:rodrigues"><span class="math display">\[
+p_n(x)=\frac{1}{2^nn!}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left\{(x^2-1)^n\right\}
+\qquad(7)\]</span></span></p>
+<p>また, Legendre 多項式は以下の Bonnet の漸化式を満たす.</p>
+<p><span id="eq:zenkasiki"><span class="math display">\[
+(n+1)p_{n+1}(x)=(2n+1)xp_n(x)-np_{n-1}(x)
+\qquad(8)\]</span></span></p>
+<p>さらに, Legendre 多項式の定義 ( 5) を用いれば, 任意の高々 <span class="math inline">\(k~(k=0,\cdots,n-1)\)</span> 次の多項式 <span class="math inline">\(q_k\)</span> に対して</p>
+<p><span id="eq:tyokkou2"><span class="math display">\[
+\dintegral{-1}{1}{p_n(x)q_k(x)}=0
+\qquad(9)\]</span></span></p>
+<p>が成り立つことはほとんど明らかであろう.</p>
+<h2 id="gauss-legendre-の数値積分公式-1">Gauss-Legendre の数値積分公式</h2>
+<p>以上の準備の下, Gauss-Legendre の数値積分公式を導出する. 例として, 3次多項式 <span class="math inline">\(f_3(x)\)</span> の <span class="math inline">\([-1,1]\)</span> における定積分 <span class="math inline">\(I_3\)</span> を考えよう. はじめに, <span class="math inline">\(f_3\)</span> を 2 次の Legendre 多項式 <span class="math inline">\(p_2\)</span> で以下のように「割り算」する.</p>
+<p><span id="eq:warizan"><span class="math display">\[
+f_3(x)=p_2(x)q_1(x)+r_1(x)
+\qquad(10)\]</span></span></p>
+<p>ここに, <span class="math inline">\(~q_1, r_1\)</span> は <span class="math inline">\(x\)</span> の 1 次多項式である. これを用いれば,</p>
+<p><span id="eq:aaa"><span class="math display">\[
+\begin{align}
+I_3
+&amp;=\dintegral{-1}{1}{f_3(x)}\\
+&amp;=\dintegral{-1}{1}{p_2(x)q_1(x)}+\dintegral{-1}{1}{r_1(x)}\\
+&amp;=\dintegral{-1}{1}{r_1(x)}
+\end{align}
+\qquad(11)\]</span></span></p>
+<p>となる. ここで, Legendre 多項式の性質 ( 9) を用いた. <strong>直交性</strong> を用いることで, 3 次関数の積分が 1 次関数の積分に帰着されたことに注意しておこう. さらに, <span class="math inline">\(r_1\)</span> を <span class="math inline">\(x=x_1, x_2\)</span> で Legendre 補間すれば,</p>
+<p><span id="eq:bbb"><span class="math display">\[
+\begin{align}
+I_3
+&amp;=\dintegral{-1}{1}{\frac{x-x_2}{x_1-x_2}r_1(x_2)}+\dintegral{-1}{1}{\frac{x-x_1}{x_2-x_1}r_1(x_2)}\\
+&amp;=\frac{-2x_2}{x_1-x_2}r_1(x_1)+\frac{-2x_1}{x_2-x_1}r_1(x_2)
+\end{align}
+\qquad(12)\]</span></span></p>
+<p>を得る. <span class="math inline">\(x_1, x_2\)</span> として, <span class="math inline">\(p_2(x_i)=0\)</span> を満たすもの (すなわち, Legendre 多項式の零点) を用いれば, 式　( 10) より</p>
+<p><span id="eq:warizan2"><span class="math display">\[
+\begin{align}
+f_3(x_i)&amp;=p_2(x_i)q_1(x_i)+r_1(x_i)\\
+&amp;=r_1(x_i)
+\end{align}
+\qquad(13)\]</span></span></p>
+<p>であるから,</p>
+<p><span id="eq:ccc"><span class="math display">\[
+\begin{align}
+I_3
+&amp;=\frac{-2x_2}{x_1-x_2}f_3(x_1)+\frac{-2x_1}{x_2-x_1}f_3(x_2)
+\end{align}
+\qquad(14)\]</span></span></p>
+<p>となる. <span class="math inline">\(p_2(x)=(3x^2-1)/2\)</span> であるから, その零点は <span class="math inline">\(x_1=-1/\sqrt{3}, x_2=1/\sqrt{3}\)</span> である. これを式 ( 14) に代入すれば</p>
+<p><span id="eq:ddd"><span class="math display">\[
+\begin{align}
+I_3=\dintegral{-1}{1}{f_3(x)}=f_3(-1/\sqrt{3})\times 1 + f_3(1/\sqrt{3})\times 1
+\end{align}
+\qquad(15)\]</span></span></p>
+<p>が <strong>厳密に</strong> 成り立つ. 式 ( 15) を式 ( 2) において <span class="math inline">\(x_1=-1/\sqrt{3}, x_2=1/\sqrt{3}\)</span>, <span class="math inline">\(w_1=w_2=1\)</span> とおいたものと見比べれば, これが 2 次の Gauss-Legendre 数値積分公式に他ならないことが分かるであろう. ここで見たように, 2 次の Gauss-Legendre 数値積分は高々 3 次の多項式の正確な定積分を与える. 一般に, <span class="math inline">\(n\)</span> 次の Gauss-Legendre 数値積分は高々 <span class="math inline">\(2n-1\)</span> 次の多項式の正確な定積分を与える. 実は, <span class="math inline">\(n\)</span> 次の数値積分公式を用いて <span class="math inline">\(2n\)</span> 次以上の多項式を正確に積分することはできないことを容易に示すことができる (直感的には, <span class="math inline">\(n\)</span> 次の数値積分公式の持つ自由度 <span class="math inline">\(2n\)</span> (= <span class="math inline">\(n\)</span> 個の分点と <span class="math inline">\(n\)</span> 個の重み) と <span class="math inline">\(2n-1\)</span> 次多項式の持つ自由度 <span class="math inline">\(2n\)</span> (=定数項を含む各項の係数) が一致するからであると理解すれば良い). この意味で, Gauss-Legendre 数値積分は「最適」な公式であると言える (ただし, 被積分 <span class="math inline">\(f\)</span> が多項式でない場合にも精度良く積分値を与えるという意味ではない).</p>
+<p>以下, Gauss-Legendre 数値積分の分点と重みの計算法について説明する. はじめに, <span class="math inline">\(n\)</span> 次の Legendre 多項式の零点 <span class="math inline">\(x_i\)</span> が区間 <span class="math inline">\([-1, 1]\)</span> の内部に <span class="math inline">\(n\)</span> 個存在することを証明しておこう.</p>
+<blockquote>
+<p><strong>定理</strong>: <span class="math inline">\(n\ge 1\)</span> の Legendre 多項式 <span class="math inline">\(p_n(x)\)</span> の零点は全て単根であり (=相異なり) <span class="math inline">\([-1,1]\)</span> の内部に存在する.</p>
+</blockquote>
+<blockquote>
+<p><strong>証明</strong>: <span class="math inline">\(n\ge 1\)</span> より, <span class="math inline">\(\displaystyle\dintegral{-1}{1}{p_n(x)}=\displaystyle\dintegral{-1}{1}{p_n(x)p_0(x)}=0\)</span> であるが, <span class="math inline">\([-1,1]\)</span> において <span class="math inline">\(p_n\)</span> は恒等的に零ではないから, <span class="math inline">\(p_n\)</span> は <span class="math inline">\([-1,1]\)</span> で少なくとも一度は符号が変わる. そのような点を <span class="math inline">\(x_1, x_2, \cdots, x_k~(1\le k\le n)\)</span> と書こう. <span class="math inline">\(k\le n\)</span>は, <span class="math inline">\(n\)</span> 次多項式が <span class="math inline">\(n+1\)</span> 個以上の零点を持ち得ないことから分かる. ここで, <span class="math inline">\(x_i\)</span> の前後で <span class="math inline">\(p_n\)</span> の符号が変わることからその重複度は奇数である. したがって, <span class="math inline">\(k\)</span> 次多項式 <span class="math inline">\(q_k(x)=\displaystyle\prod_{j=1}^k(x-x_j)\)</span> に対し, <span class="math inline">\(p_n(x)q_k(x)\)</span> は <span class="math inline">\([-1,1]\)</span> で符号が変わらない. このことから,</p>
+</blockquote>
+<p><span id="eq:eee"><span class="math display">\[
+\dintegral{-1}{1}{p_n(x)q_k(x)}\neq 0
+\qquad(16)\]</span></span></p>
+<blockquote>
+<p>である. 一方, Legendre 多項式の性質 ( 5) より, 高々 <span class="math inline">\(n-1\)</span> 次の多項式 <span class="math inline">\(q_{n-1}\)</span> に対して</p>
+</blockquote>
+<p><span id="eq:fff"><span class="math display">\[
+\dintegral{-1}{1}{p_n(x)q_{n-1}(x)}= 0
+\qquad(17)\]</span></span></p>
+<blockquote>
+<p>である. 式 ( 16) と式 ( 17) より, <span class="math inline">\(k=n\)</span> である. 以上より, <span class="math inline">\(p_n(x)\)</span> は <span class="math inline">\([-1,1]\)</span> に <span class="math inline">\(n\)</span> 個の零点を持ち, それらは全て単根である.</p>
+</blockquote>
+<p>次に, 分点を求める方法について述べる. 漸化式 ( 8) を変形して得られる</p>
+<p><span id="eq:zenkasiki2"><span class="math display">\[
+xp_n(x)=\frac{n}{2n+1}p_{n-1}(x)+\frac{n+1}{2n+1}p_{n+1}(x)
+\qquad(18)\]</span></span></p>
+<p>を <span class="math inline">\(n=0, \cdots, N-1\)</span> まで並べて表示すれば</p>
+<p><span id="eq:zenkasiki_gyouretu"><span class="math display">\[
+x
+\begin{pmatrix}
+p_0(x)\\
+p_1(x)\\
+\vdots\\
+p_{N-2}(x)\\
+p_{N-1}(x)
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0\\
+\frac{1}{3} &amp; 0 &amp; \frac{2}{3} &amp; \ddots &amp; \vdots\\
+0 &amp; \frac{2}{5} &amp; 0 &amp; \ddots &amp; 0\\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \frac{n-1}{2n-3}\\
+0 &amp; \cdots &amp; 0 &amp; \frac{n-1}{2n-1} &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+p_0(x)\\
+p_1(x)\\
+\vdots\\
+p_{N-2}(x)\\
+p_{N-1}(x)
+\end{pmatrix}
++
+\begin{pmatrix}
+0\\
+\vdots\\
+\vdots\\
+0\\
+\frac{n}{2n-1}p_{N}(x)
+\end{pmatrix}
+\qquad(19)\]</span></span></p>
+<p>となる. <span class="math inline">\(x_j~(j=1,\cdots,N)\)</span> を <span class="math inline">\(p_N\)</span> の零点として, <span class="math inline">\(x=x_j\)</span> を式 ( 19) に代入すれば, <span class="math inline">\(x_j\)</span> を解に持つ固有値問題</p>
+<p><span id="eq:koyuchi"><span class="math display">\[
+x_j
+\begin{pmatrix}
+p_0(x_j)\\
+p_1(x_j)\\
+\vdots\\
+p_{N-2}(x_j)\\
+p_{N-1}(x_j)
+\end{pmatrix}
+=
+\begin{pmatrix}
+0 &amp; 1 &amp; 0 &amp; \cdots &amp; 0\\
+\frac{1}{3} &amp; 0 &amp; \frac{2}{3} &amp; \ddots &amp; \vdots \\
+0 &amp; \frac{2}{5} &amp; 0 &amp; \ddots &amp; 0\\
+\vdots &amp; \ddots &amp; \ddots &amp; \ddots &amp; \frac{n-1}{2n-3}\\
+0 &amp; \cdots &amp; 0 &amp; \frac{n-1}{2n-1} &amp; 0
+\end{pmatrix}
+\begin{pmatrix}
+p_0(x_j)\\
+p_1(x_j)\\
+\vdots\\
+p_{N-2}(x_j)\\
+p_{N-1}(x_j)
+\end{pmatrix}
+\qquad(20)\]</span></span></p>
+<p>を得る. これを数値的に解けば Gauss-Legendre 数値積分の分点が求まる. この手順を Golub–Welsch のアルゴリズムという. 実際には, 固有値問題 ( 20) に現れる行列を適当に相似変換し, 対象行列とした上で固有値を求めることが多い.</p>
+<p>重み <span class="math inline">\(w_j\)</span> については, <span class="math inline">\(N-1\)</span> 次多項式 <span class="math inline">\(f(x)=\displaystyle\prod_{i=1,i\neq j}^{N}(x-x_i)\)</span> (ここに, <span class="math inline">\(x_i\)</span> は <span class="math inline">\(N\)</span> 次 Gauss-Legendre 数値積分の分点) に対する <span class="math inline">\(N\)</span> 次の Gauss-Legendre 積分公式</p>
+<p><span class="math display">\[
+\dintegral{-1}{1}{f(x)}=\sum_{i=1}^n f(x_i)w_i=f(x_j)w_j
+\]</span></p>
+<p>が厳密に成り立つことから,</p>
+<p><span id="eq:saigo"><span class="math display">\[
+w_j=\frac{\displaystyle\dintegral{-1}{1}{f(x)}}{f(x_j)}
+\qquad(21)\]</span></span></p>
+<p>と計算すれば良い. 式 ( 21) の右辺の分母に現れる積分は, 例えば <span class="math inline">\(\left[N/2\right]\)</span> 次の Gauss-Legendre 数値積分で計算すれば良い.</p>
+<p>最後に, 積分区間を <span class="math inline">\([a,b]\)</span> に変更したければ, 以下のように変数変換すれば良い.</p>
+<p><span class="math display">\[
+\dintegral{a}{b}{f(x)}=\dintegral{-1}{1}{f\left(\frac{b-a}{2}x+\frac{b+a}{2}\right)}
+\]</span></p>
+<p>分点 <span class="math inline">\(x_i\)</span> や重み <span class="math inline">\(w_i\)</span> はできるだけ正確に求めておきたいから, 通常用いる倍精度実数ではなく, 例えば 4 倍精度実数を用いて計算すると良い. 4 倍精度演算を用いて <span class="math inline">\(x_i\)</span>, <span class="math inline">\(w_i\)</span> を求める fortran コードは <a href="https://github.com/isakari/glq_quadp/">https://github.com/isakari/glq_quadp/</a> を参照されたい. このプログラムを用いて計算した分点と重みの表を以下に示しておく.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode a.f90"><code class="sourceCode fortranfree"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>N<span class="kw">=</span><span class="dv">1</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>i   分点　　　　　　　　　　　　　　　　　　　　　　 　　　重み</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span>   <span class="fl">0.00000000000000000000000000000000000</span>         <span class="fl">2.00000000000000000000000000000000000</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode a.f90"><code class="sourceCode fortranfree"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>N<span class="kw">=</span><span class="dv">2</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>i   分点　　　　　　　　　　　　　　　　　　　　　　 　　　重み</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">-</span><span class="fl">0.577350269189625764509148780501957505</span>         <span class="fl">0.999999999999999999999999999999999904</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="fl">0.577350269189625764509148780501957505</span>         <span class="fl">0.999999999999999999999999999999999904</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode a.f90"><code class="sourceCode fortranfree"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>N<span class="kw">=</span><span class="dv">3</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>i   分点　　　　　　　　　　　　　　　　　　　　　　 　　　重み</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">-</span><span class="fl">0.774596669241483377035853079956479975</span>         <span class="fl">0.555555555555555555555555555555555384</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span>  <span class="fl">5.64237288394698003824993537866677925</span>E<span class="kw">-</span><span class="dv">0037</span>    <span class="fl">0.888888888888888888888888888888888268</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="fl">0.774596669241483377035853079956480071</span>         <span class="fl">0.555555555555555555555555555555555384</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode a.f90"><code class="sourceCode fortranfree"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>N<span class="kw">=</span><span class="dv">4</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>i   分点　　　　　　　　　　　　　　　　　　　　　　 　　　重み</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">-</span><span class="fl">0.861136311594052575223946488892809554</span>         <span class="fl">0.347854845137453857373063949221999619</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="kw">-</span><span class="fl">0.339981043584856264802665759103244761</span>         <span class="fl">0.652145154862546142626936050778000574</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>  <span class="fl">0.339981043584856264802665759103244712</span>         <span class="fl">0.652145154862546142626936050778000285</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">0.861136311594052575223946488892809457</span>         <span class="fl">0.347854845137453857373063949221999619</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode a.f90"><code class="sourceCode fortranfree"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>N<span class="kw">=</span><span class="dv">5</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>i   分点　　　　　　　　　　　　　　　　　　　　　　 　　　重み</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">-</span><span class="fl">0.906179845938663992797626878299392925</span>         <span class="fl">0.236926885056189087514264040719917379</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="kw">-</span><span class="fl">0.538469310105683091036314420700208927</span>         <span class="fl">0.478628670499366468041291514835638128</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span>   <span class="fl">3.54466792529882068759881776526999728</span>E<span class="kw">-</span><span class="dv">0035</span>   <span class="fl">0.568888888888888888888888888888889081</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">0.538469310105683091036314420700208831</span>         <span class="fl">0.478628670499366468041291514835637839</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="fl">0.906179845938663992797626878299392828</span>         <span class="fl">0.236926885056189087514264040719917644</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode a.f90"><code class="sourceCode fortranfree"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>N<span class="kw">=</span><span class="dv">6</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>i   分点　　　　　　　　　　　　　　　　　　　　　　 　　　重み</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="kw">-</span><span class="fl">0.932469514203152027812301554493994497</span>         <span class="fl">0.171324492379170345040296142172732797</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="kw">-</span><span class="fl">0.661209386466264513661399595019905623</span>         <span class="fl">0.360761573048138607569833513837715757</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="dv">3</span> <span class="kw">-</span><span class="fl">0.238619186083196908630501721680711839</span>         <span class="fl">0.467913934572691047389870343989551374</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span>  <span class="fl">0.238619186083196908630501721680711839</span>         <span class="fl">0.467913934572691047389870343989549448</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="dv">5</span>  <span class="fl">0.661209386466264513661399595019905141</span>         <span class="fl">0.360761573048138607569833513837715324</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span>  <span class="fl">0.932469514203152027812301554493994690</span>         <span class="fl">0.171324492379170345040296142172732580</span></span></code></pre></div>
+<h3 id="演習問題">演習問題</h3>
+<blockquote>
+<p>好きな関数 <span class="math inline">\(f\)</span> に対し</p>
+</blockquote>
+<blockquote>
+<ol type="1">
+<li><span class="math inline">\(\displaystyle\int_{-1}^1 f(x)\)</span> を解析的に計算せよ.</li>
+<li><span class="math inline">\(\displaystyle\int_{-1}^1 f(x)\)</span> を Gauss-Legendre 数値積分を用いて計算し, (1) の結果と比較せよ.</li>
+</ol>
+</blockquote>
+<hr />
+<p><a href="../index.html">../</a></p>
+</body>
+</html>
