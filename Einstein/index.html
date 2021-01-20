@@ -4,9 +4,9 @@
   <meta charset="utf-8">
   <meta name="generator" content="pandoc">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>README</title>
+  <title>Summation convention</title>
   <style type="text/css">code{white-space: pre;}</style>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -215,7 +215,7 @@ f,_i:=\frac{\partial f}{\partial x_i}
 <p>ここで導入した添字記法と Einstein の総和規約を用いることで, 力学や電磁気学の記述が簡単になり, 計算の見通しが格段に良くなるのでぜひ習得して欲しい. 以下に練習用の問題をいくつか挙げておく.</p>
 <ol type="1">
 <li><p><span class="math inline">\(\bs{a}\)</span>, <span class="math inline">\(\bs{b}\)</span>, <span class="math inline">\(\bs{c}\in\mathbb{R}^3\rightarrow\mathbb{R}^3\)</span> をベクトル場とする. <span class="math inline">\((\bs{a}\times\bs{b})\times\bs{c}=(\bs{a}\cdot\bs{c})\bs{b}-(\bs{b}\cdot\bs{c})\bs{a}\)</span> を示せ.</p></li>
-<li><p><span class="math inline">\(\phi: \mathbb{R}^3\rightarrow\mathbb{R}\)</span> をスカラー場, <span class="math inline">\(\bs{u}\)</span>, <span class="math inline">\(\bs{v}: \mathbb{R}^3\rightarrow\mathbb{R}^3\)</span> をベクトル場とする. 以下の恒等式を証明せよ.</p>
+<li><span class="math inline">\(\phi: \mathbb{R}^3\rightarrow\mathbb{R}\)</span> をスカラー場, <span class="math inline">\(\bs{u}\)</span>, <span class="math inline">\(\bs{v}: \mathbb{R}^3\rightarrow\mathbb{R}^3\)</span> をベクトル場とする. 以下の恒等式を証明せよ.
 <ol type="1">
 <li><span class="math inline">\(\nabla\cdot(\phi \bs{v})=\nabla\phi\cdot\bs{v}+\phi \ \text{div} \ \bs{v}\)</span></li>
 <li><span class="math inline">\(\nabla\times(\phi \bs{v})=\nabla\phi\times\bs{v}+\phi \ (\nabla\times\bs{v})\)</span></li>
@@ -223,7 +223,7 @@ f,_i:=\frac{\partial f}{\partial x_i}
 <li><span class="math inline">\(\nabla\times\nabla\phi = \bs{0}\)</span></li>
 <li><span class="math inline">\(\nabla\cdot\nabla\times\bs{v} = 0\)</span></li>
 </ol></li>
-<li><p><span class="math inline">\(r=|\bs{x}|\)</span> (ただし <span class="math inline">\(\bs{x}\neq\bs{0}\)</span>) とする. また, <span class="math inline">\(\bs{a}\)</span> を (<span class="math inline">\(x_i\)</span> に依らない) 定ベクトルとする. 以下を計算せよ.</p>
+<li><span class="math inline">\(r=|\bs{x}|\)</span> (ただし <span class="math inline">\(\bs{x}\neq\bs{0}\)</span>) とする. また, <span class="math inline">\(\bs{a}\)</span> を (<span class="math inline">\(x_i\)</span> に依らない) 定ベクトルとする. 以下を計算せよ.
 <ol type="1">
 <li><span class="math inline">\(\nabla r\)</span>   (ヒント: <span class="math inline">\(r^2=x_jx_j\)</span> であり, また <span class="math inline">\(x_{i,j}=\delta_{ij}\)</span> である.)</li>
 <li><span class="math inline">\(\nabla\cdot\bs{x}\)</span></li>
