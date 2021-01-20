@@ -104,7 +104,7 @@ I\simeq\sum_{i=1}^N f(x_i) w_i
 <p>図 1 と 図 2 を比較すれば, 区分求積よりも台形公式の方が積分の精度は良さそうである. しかし, 台形公式を用いた場合, 式 ( 1) で与えられる積分を <strong>厳密に</strong> 計算できるのは被積分関数 <span class="math inline">\(f(x)\)</span> が区分的に一次関数である場合に限られる. では, あるクラスの関数 <span class="math inline">\(f\)</span> の定積分を厳密に (=誤差0で) 計算できる数値積分公式は存在するだろうか? 実は, <span class="math inline">\(N\)</span> 次の Gauss-Legendre の数値積分公式は, <strong><span class="math inline">\(f\)</span> が <span class="math inline">\(2N-1\)</span> 次以下の多項式であるならば厳密な積分値を与える</strong> ように設計された数値積分公式である. 次節で, そのような分点・重みの定め方について見てみよう.</p>
 <h2 id="gauss-legendre-の数値積分公式">Gauss-Legendre の数値積分公式</h2>
 <h3 id="lagrange-補間">Lagrange 補間</h3>
-<p>本節では, Gauss-Legendre の数値積分公式を記述する上で必要となる Lagrange 補間について確認する. Lagrange 補間とは, 与えられた相異なる点 <span class="math inline">\((x_i, f_i)\)</span> <span class="math inline">\((i=1,\cdots,n)\)</span> に対し, <span class="math inline">\(f(x_i)=f_i\)</span> を満たす <span class="math inline">\(n-1\)</span> 次多項式, およびこれを求める手順のことを言う. 例えば, <span class="math inline">\(N=3\)</span> の場合を考えてみよう. この時, <span class="math inline">\(\mathbb{R}^2\)</span> の <span class="math inline">\(3\)</span> つの点 <span class="math inline">\((x_1, f_1)\)</span>, <span class="math inline">\((x_2, f_2)\)</span>, <span class="math inline">\((x_3, f_3)\)</span> を通る <span class="math inline">\(2\)</span> 次多項式 <span class="math inline">\(f(x)=a_2x^2+a_1x+a_0\)</span> を求めれば良い. 定義に従って, 連立方程式 <span class="math inline">\(f(x_i)=f_i\)</span> を未知係数 <span class="math inline">\(a_0, a_1, a_2\)</span> について解いても良いが, そのような多項式が一意に定まることを考慮すれば,</p>
+<p>本節では, Gauss-Legendre の数値積分公式を記述する上で必要となる Lagrange 補間について確認する. Lagrange 補間とは, 与えられた相異なる点 <span class="math inline">\((x_i, f_i)\)</span> <span class="math inline">\((i=1,\cdots,N)\)</span> に対し, <span class="math inline">\(f(x_i)=f_i\)</span> を満たす <span class="math inline">\(N-1\)</span> 次多項式, およびこれを求める手順のことを言う. 例えば, <span class="math inline">\(N=3\)</span> の場合を考えてみよう. この時, <span class="math inline">\(\mathbb{R}^2\)</span> の <span class="math inline">\(3\)</span> つの点 <span class="math inline">\((x_1, f_1)\)</span>, <span class="math inline">\((x_2, f_2)\)</span>, <span class="math inline">\((x_3, f_3)\)</span> を通る <span class="math inline">\(2\)</span> 次多項式 <span class="math inline">\(f(x)=a_2x^2+a_1x+a_0\)</span> を求めれば良い. 定義に従って, 連立方程式 <span class="math inline">\(f(x_i)=f_i\)</span> を未知係数 <span class="math inline">\(a_0, a_1, a_2\)</span> について解いても良いが, そのような多項式が一意に定まることを考慮すれば,</p>
 <p><span id="eq:lagrange3"><span class="math display">\[
 f(x)
 =\frac{(x-x_2)(x-x_3)}{(x_1-x_2)(x_1-x_3)}f_1
@@ -157,13 +157,13 @@ p_n(x)=\frac{1}{2^nn!}\frac{\mathrm{d}^n}{\mathrm{d}x^n}\left\{(x^2-1)^n\right\}
 <p><span id="eq:tyokkou2"><span class="math display">\[
 \dintegral{-1}{1}{p_n(x)q_k(x)}=0
 \qquad(9)\]</span></span></p>
-<p>が成り立つことはほとんど明らかであろう.</p>
+<p>が成り立つことはほとんど明らかであろう (証明のスケッチ: <span class="math inline">\(q_k\)</span> を <span class="math inline">\(p_0, p_1, \cdots, p_{k}\)</span> の線型結合で表し, 式 ( 5) を用いれば良い).</p>
 <h2 id="gauss-legendre-の数値積分公式-1">Gauss-Legendre の数値積分公式</h2>
 <p>以上の準備の下, Gauss-Legendre の数値積分公式を導出する. 例として, 3次多項式 <span class="math inline">\(f_3(x)\)</span> の <span class="math inline">\([-1,1]\)</span> における定積分 <span class="math inline">\(I_3\)</span> を考えよう. はじめに, <span class="math inline">\(f_3\)</span> を 2 次の Legendre 多項式 <span class="math inline">\(p_2\)</span> で以下のように「割り算」する.</p>
 <p><span id="eq:warizan"><span class="math display">\[
 f_3(x)=p_2(x)q_1(x)+r_1(x)
 \qquad(10)\]</span></span></p>
-<p>ここに, <span class="math inline">\(~q_1, r_1\)</span> は <span class="math inline">\(x\)</span> の 1 次多項式である. これを用いれば,</p>
+<p>ここに, <span class="math inline">\(~q_1, r_1\)</span> は <span class="math inline">\(x\)</span> の高々 1 次の多項式である. これを用いれば,</p>
 <p><span id="eq:aaa"><span class="math display">\[
 \begin{align}
 I_3
@@ -180,7 +180,7 @@ I_3
 &amp;=\frac{-2x_2}{x_1-x_2}r_1(x_1)+\frac{-2x_1}{x_2-x_1}r_1(x_2)
 \end{align}
 \qquad(12)\]</span></span></p>
-<p>を得る. <span class="math inline">\(x_1, x_2\)</span> として, <span class="math inline">\(p_2(x_i)=0\)</span> を満たすもの (すなわち, Legendre 多項式の零点) を用いれば, 式　( 10) より</p>
+<p>を得る. <span class="math inline">\(x_1, x_2\)</span> として, <span class="math inline">\(p_2(x_i)=0\)</span> を満たすもの (すなわち, Legendre 多項式の零点) を用いれば, 式 ( 10) より</p>
 <p><span id="eq:warizan2"><span class="math display">\[
 \begin{align}
 f_3(x_i)&amp;=p_2(x_i)q_1(x_i)+r_1(x_i)\\
@@ -206,7 +206,7 @@ I_3=\dintegral{-1}{1}{f_3(x)}=f_3(-1/\sqrt{3})\times 1 + f_3(1/\sqrt{3})\times 1
 <p><strong>定理</strong>: <span class="math inline">\(n\ge 1\)</span> の Legendre 多項式 <span class="math inline">\(p_n(x)\)</span> の零点は全て単根であり (=相異なり) <span class="math inline">\([-1,1]\)</span> の内部に存在する.</p>
 </blockquote>
 <blockquote>
-<p><strong>証明</strong>: <span class="math inline">\(n\ge 1\)</span> より, <span class="math inline">\(\displaystyle\dintegral{-1}{1}{p_n(x)}=\displaystyle\dintegral{-1}{1}{p_n(x)p_0(x)}=0\)</span> であるが, <span class="math inline">\([-1,1]\)</span> において <span class="math inline">\(p_n\)</span> は恒等的に零ではないから, <span class="math inline">\(p_n\)</span> は <span class="math inline">\([-1,1]\)</span> で少なくとも一度は符号が変わる. そのような点を <span class="math inline">\(x_1, x_2, \cdots, x_k~(1\le k\le n)\)</span> と書こう. <span class="math inline">\(k\le n\)</span>は, <span class="math inline">\(n\)</span> 次多項式が <span class="math inline">\(n+1\)</span> 個以上の零点を持ち得ないことから分かる. ここで, <span class="math inline">\(x_i\)</span> の前後で <span class="math inline">\(p_n\)</span> の符号が変わることからその重複度は奇数である. したがって, <span class="math inline">\(k\)</span> 次多項式 <span class="math inline">\(q_k(x)=\displaystyle\prod_{j=1}^k(x-x_j)\)</span> に対し, <span class="math inline">\(p_n(x)q_k(x)\)</span> は <span class="math inline">\([-1,1]\)</span> で符号が変わらない. このことから,</p>
+<p><strong>証明</strong>: <span class="math inline">\(n\ge 1\)</span> より, <span class="math inline">\(\displaystyle\dintegral{-1}{1}{p_n(x)}=\displaystyle\dintegral{-1}{1}{p_n(x)p_0(x)}=0\)</span> であるが, <span class="math inline">\([-1,1]\)</span> において <span class="math inline">\(p_n\)</span> は恒等的に零ではないから, <span class="math inline">\(p_n\)</span> は <span class="math inline">\([-1,1]\)</span> で少なくとも一度は符号が変わる. そのような点を <span class="math inline">\(x_1, x_2, \cdots, x_k~(1\le k\le n)\)</span> と書こう. <span class="math inline">\(k\le n\)</span> は, <span class="math inline">\(n\)</span> 次多項式が <span class="math inline">\(n+1\)</span> 個以上の零点を持ち得ないことから分かる. ここで, <span class="math inline">\(x_i\)</span> の前後で <span class="math inline">\(p_n\)</span> の符号が変わることからその重複度は奇数である. したがって, <span class="math inline">\(k\)</span> 次多項式 <span class="math inline">\(q_k(x)=\displaystyle\prod_{j=1}^k(x-x_j)\)</span> に対し, <span class="math inline">\(p_n(x)q_k(x)\)</span> は <span class="math inline">\([-1,1]\)</span> で符号が変わらない. このことから,</p>
 </blockquote>
 <p><span id="eq:eee"><span class="math display">\[
 \dintegral{-1}{1}{p_n(x)q_k(x)}\neq 0
@@ -293,12 +293,12 @@ p_{N-1}(x_j)
 <p><span id="eq:saigo"><span class="math display">\[
 w_j=\frac{\displaystyle\dintegral{-1}{1}{f(x)}}{f(x_j)}
 \qquad(21)\]</span></span></p>
-<p>と計算すれば良い. 式 ( 21) の右辺の分母に現れる積分は, 例えば <span class="math inline">\(\left[N/2\right]\)</span> 次の Gauss-Legendre 数値積分で計算すれば良い.</p>
+<p>と計算すれば良い. 式 ( 21) の右辺の分子に現れる積分は, 例えば <span class="math inline">\(\left[N/2\right]\)</span> 次の Gauss-Legendre 数値積分で計算すれば良い.</p>
 <p>最後に, 積分区間を <span class="math inline">\([a,b]\)</span> に変更したければ, 以下のように変数変換すれば良い.</p>
 <p><span class="math display">\[
 \dintegral{a}{b}{f(x)}=\dintegral{-1}{1}{f\left(\frac{b-a}{2}x+\frac{b+a}{2}\right)}
 \]</span></p>
-<p>分点 <span class="math inline">\(x_i\)</span> や重み <span class="math inline">\(w_i\)</span> はできるだけ正確に求めておきたいから, 通常用いる倍精度実数ではなく, 例えば 4 倍精度実数を用いて計算すると良い. 4 倍精度演算を用いて <span class="math inline">\(x_i\)</span>, <span class="math inline">\(w_i\)</span> を求める fortran コードは <a href="https://github.com/isakari/glq_quadp/" class="uri">https://github.com/isakari/glq_quadp/</a> を参照されたい. このプログラムを用いて計算した分点と重みの表を以下に示しておく.</p>
+<p>分点 <span class="math inline">\(x_i\)</span> や重み <span class="math inline">\(w_i\)</span> はできるだけ正確に求めておきたいから, 数値計算に通常用いる倍精度実数ではなく, 例えば 4 倍精度実数を用いて計算すると良い. 4 倍精度演算を用いて <span class="math inline">\(x_i\)</span>, <span class="math inline">\(w_i\)</span> を求める fortran コードは <a href="https://github.com/isakari/glq_quadp/" class="uri">https://github.com/isakari/glq_quadp/</a> を参照されたい. このプログラムを用いて計算した分点と重みの表を以下に示しておく.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode a.f90"><code class="sourceCode fortran"><a class="sourceLine" id="cb1-1" title="1">N<span class="kw">=</span><span class="dv">1</span></a>
 <a class="sourceLine" id="cb1-2" title="2">i   分点　　　　　　　　　　　　　　　　　　　　　　 　　　重み</a>
 <a class="sourceLine" id="cb1-3" title="3"><span class="dv">1</span>   <span class="fl">0.00000000000000000000000000000000000</span>         <span class="fl">2.00000000000000000000000000000000000</span></a></code></pre></div>
@@ -338,8 +338,8 @@ w_j=\frac{\displaystyle\dintegral{-1}{1}{f(x)}}{f(x_j)}
 </blockquote>
 <blockquote>
 <ol type="1">
-<li><span class="math inline">\(\displaystyle\int_{-1}^1 f(x)\)</span> を解析的に計算せよ.</li>
-<li><span class="math inline">\(\displaystyle\int_{-1}^1 f(x)\)</span> を Gauss-Legendre 数値積分を用いて計算し, (1) の結果と比較せよ.</li>
+<li><span class="math inline">\(\displaystyle\int_{0}^2 f(x) \mathrm{d}x\)</span> を解析的に計算せよ.</li>
+<li><span class="math inline">\(\displaystyle\int_{0}^2 f(x) \mathrm{d}x\)</span> を Gauss-Legendre 数値積分を用いて計算し, (1) の結果と比較せよ.</li>
 </ol>
 </blockquote>
 <hr />
