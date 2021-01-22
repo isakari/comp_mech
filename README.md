@@ -7,7 +7,7 @@
 * [Einstein の総和規約](Einstein/README.md)
 
 ## 3. 連続体力学
-* 連続体の変形
+* [連続体の変形](Deform/README.md)
 * 連続体のつりあい
 
 ## 4. 弱形式
