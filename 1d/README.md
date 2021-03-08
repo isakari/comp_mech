@@ -184,18 +184,18 @@ $$
 $$
 \begin{align}
 g_0(x)&=\begin{cases}
-4x & \text{if~} 0\le x\le 1/4 \\
--4(x-1/2) & \text{if~} 0\le x\le 1/2 \\
+4x & \text{if   } 0\le x\le 1/4 \\
+-4(x-1/2) & \text{if   } 0\le x\le 1/2 \\
 0 & \text{otherwise}
 \end{cases}\\
 g_1(x)&=\begin{cases}
-4(x-1/4) & \text{if~} 1/4\le x\le 1/2 \\
--4(x-3/4) & \text{if~} 1/2\le x\le 3/4 \\
+4(x-1/4) & \text{if   } 1/4\le x\le 1/2 \\
+-4(x-3/4) & \text{if   } 1/2\le x\le 3/4 \\
 0 & \text{otherwise}
 \end{cases}\\
 g_2(x)&=\begin{cases}
-4(x-1/2) & \text{if~} 1/2\le x\le 3/4 \\
--4(x-1) & \text{if~} 3/4\le x\le 1 \\
+4(x-1/2) & \text{if   } 1/2\le x\le 3/4 \\
+-4(x-1) & \text{if   } 3/4\le x\le 1 \\
 0 & \text{otherwise}
 \end{cases}
 \end{align}

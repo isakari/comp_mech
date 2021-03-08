@@ -20,7 +20,51 @@
 \newcommand{\dintegral}[3]{\int_{#1}^{#2} {#3} \mathrm{d}x}
 \]</span></p>
 <h1 id="連続体力学-連続体の変形">3. 連続体力学: 連続体の変形</h1>
-<p>本節では,</p>
+<p>連続体とは、運動する物体のモデルである. これまでに学んだ</p>
+<ul>
+<li><p>質点: 物体を質量のみが定義された空間的な広がりを持たない点によりモデル化したもの. 物体の並進運動を記述することができる.</p></li>
+<li><p>剛体: 物体を質点の集合体としてモデル化したもの. 剛体内部の任意の二点間の距離が不変. 物体の並進運動に加え, 回転を記述することできる.</p></li>
+</ul>
+<p>の発展的なモデルとみなすことができ, 物体の運動に伴う <strong>変形</strong> を記述することができる. 本章の目標は, 変形を表す物理量として <strong>ひずみ (strain)</strong> を定義することである. なお, 本節ではテンソルを明確な定義なしに用いるが, その定義は次章において述べる. 本章においてはテンソルを行列と混同して構わない.</p>
+<h2 id="変位">変位</h2>
+<p>適当な座標系をもつ空間において, 境界を <span class="math inline">\(S\)</span> とする有限の大きさの物体 <span class="math inline">\(V\)</span> の内部に埋め込まれた点 <span class="math inline">\(\bs{X}\)</span> を考える. この物体が変形し, <span class="math inline">\(V\)</span>, <span class="math inline">\(S\)</span>, <span class="math inline">\(\bs{X}\)</span> がそれぞれ <span class="math inline">\(v\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(\bs{x}\)</span> に変化したとする (図 1). この時,</p>
+<p><span id="eq:displacement"><span class="math display">\[
+\bs{u}:=\bs{x}-\bs{X}
+\qquad(1)\]</span></span></p>
+<p>を <strong>変位 (displacement)</strong> という. 変位 <span class="math inline">\(\bs{u}\)</span> は連続体内部の各点の移動量を表すが, 変位を眺めても物体 <span class="math inline">\(V\)</span> がどのように変形したかはよく分からない.</p>
+<p>以降の議論においては, 変形前の点 <span class="math inline">\(\bs{X}\)</span> を変形後の点 <span class="math inline">\(\bs{x}\)</span> にうつす写像 <span class="math inline">\(\bs{x}=\bs{x}(\bs{X})\)</span> が, 一対一であって (したがって逆写像 <span class="math inline">\(\bs{x}=\bs{X}(\bs{x})\)</span> が定義できる), かつ十分に滑らかである (必要なだけ微分できる) と仮定する.</p>
+<figure>
+<img src="./figs/displacement.jpeg" alt="図 1: 変形する連続体とその内部に埋め込まれた点" id="fig:displacement" /><figcaption>図 1: 変形する連続体とその内部に埋め込まれた点</figcaption>
+</figure>
+<h2 id="変形勾配テンソル">変形勾配テンソル</h2>
+<p>先の例においては変形する連続体内部の一点に注目したが、ここでは 図 2 に示す連続体内部に埋め込まれた短いベクトル <span class="math inline">\(\mathrm{d}\bs{X}:=\bs{Y}-\bs{X}\)</span> を考え, 変形に伴いこれが <span class="math inline">\(\mathrm{d}\bs{x}:=\bs{y}-\bs{x}\)</span> となったとする.</p>
+<figure>
+<img src="./figs/strain.jpeg" alt="図 2: 変形する連続体とその内部に埋め込まれたベクトル" id="fig:strain" /><figcaption>図 2: 変形する連続体とその内部に埋め込まれたベクトル</figcaption>
+</figure>
+<p>先に定義した写像 <span class="math inline">\(\bs{x}\)</span> を用いて <span class="math inline">\(\mathrm{d}\bs{x}\)</span> の一次近似を評価すると</p>
+<p><span id="eq:F"><span class="math display">\[
+\begin{align}
+\mathrm{d}x_i
+&amp;=x_i(\bs{Y})-x_i(\bs{X})\\
+&amp;=x_i(\bs{X}+\mathrm{d}\bs{X})-x_i(\bs{X})\\
+&amp;\simeq x_i(\bs{X})+\frac{\partial x_i(\bs{X})}{\partial X_j}\mathrm{d}X_j-x_i(\bs{X})\\
+&amp;=\frac{\partial x_i(\bs{X})}{\partial X_j}\mathrm{d}X_j
+\end{align}
+\qquad(2)\]</span></span></p>
+<p>と書ける (式 ( 2) において Einstein の総和規約を用いたことに注意せよ. すなわち, <span class="math inline">\(j\)</span> はダミーインデックスであり, <span class="math inline">\(j\)</span> についての和の記号を省略している). ここで, ( 2) 右辺は, <span class="math inline">\(\partial x_i/\partial X_j\)</span> を <span class="math inline">\(ij\)</span> 成分にもつ行列 <span class="math inline">\(\mathsf{F}\)</span> とベクトル <span class="math inline">\(\mathrm{ d}\bs{X}\)</span> の積 (の第 <span class="math inline">\(i\)</span> 成分) に他ならない. ここで, <span class="math inline">\(\mathsf{F}\)</span> を <strong>変形勾配テンソル</strong> と呼ぶ.</p>
+<blockquote>
+<p><strong>問 1</strong>: 変形勾配テンソルの「行列式」 (=<span class="math inline">\(\text{det }\mathsf{F}\)</span>) が何を意味するか述べよ. また, <span class="math inline">\(\text{det } \mathsf{F}&gt;0\)</span> すなわち <span class="math inline">\(F\)</span> が正定であることを示せ. ヒント: ベクトル <span class="math inline">\(\mathrm{d}\bs{X}\)</span>, <span class="math inline">\(\mathrm{d}\bs{Y}\)</span>, <span class="math inline">\(\mathrm{d}\bs{Z}\)</span> からなる平行六面体の体積が, <span class="math inline">\(\mathsf{F}\)</span> により特徴づけられる変形に伴ってどのように変化するかを考えよ.</p>
+</blockquote>
+<blockquote>
+<p><strong>問 2</strong>: 変形勾配テンソルの成分を Kronecker のデルタと変位を用いて表わせ.</p>
+</blockquote>
+<h2 id="green-のひずみテンソルと-almansi-のひずみテンソル">Green のひずみテンソルと Almansi のひずみテンソル</h2>
+<p><span class="math display">\[
+\mathrm{d}\bs{x}=\mathsf{F}\mathrm{d}\bs{X}
+\]</span></p>
+<p>に現れる変形勾配 <span class="math inline">\(\mathsf{F}\)</span> は, ベクトルの変形させる作用のみならずこれを回転させるも含んでいる. そこで, 以降, <span class="math inline">\(\mathsf{F}\)</span> を回転を表す成分と変形を表す成分に分解することを目指す.</p>
+<p>はじめに, <span class="math inline">\(\mathsf{F}\)</span> が正定値行列であるとき, <span class="math inline">\(\mathsf{F}^T\mathsf{F}\)</span> は正定値対称行列である.</p>
+<h2 id="微小ひずみ">微小ひずみ</h2>
 <hr />
 <p><a href="../index.html">../</a></p>
 </body>
