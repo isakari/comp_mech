@@ -20,24 +20,24 @@
 \newcommand{\dintegral}[3]{\int_{#1}^{#2} {#3} \mathrm{d}x}
 \]</span></p>
 <h1 id="連続体力学-連続体の変形">3. 連続体力学: 連続体の変形</h1>
-<p>連続体とは、運動する物体のモデルである. これまでに学んだ</p>
+<p>連続体とは、 <strong>変形</strong> を伴って運動する物体のモデルである. これまでに学んだ</p>
 <ul>
 <li><p>質点: 物体を質量のみが定義された空間的な広がりを持たない点によりモデル化したもの. 物体の並進運動を記述することができる.</p></li>
-<li><p>剛体: 物体を質点の集合体としてモデル化したもの. 剛体内部の任意の二点間の距離が不変. 物体の並進運動に加え, 回転を記述することできる.</p></li>
+<li><p>剛体: 物体を質点の集合体としてモデル化したもの. 剛体内部の任意の二点間の距離は運動に際して不変. 物体の並進運動に加え, 回転を記述することできる.</p></li>
 </ul>
-<p>の発展的なモデルとみなすことができ, 物体の運動に伴う <strong>変形</strong> を記述することができる. 本章の目標は, 変形を表す物理量として <strong>ひずみ (strain)</strong> を定義することである. なお, 本節ではテンソルを明確な定義なしに用いるが, その定義は次章において述べる. 本章においてはテンソルを行列と混同して構わない.</p>
+<p>の発展的なモデルとみなすことができる. 本章の目標は, 連続体の変形を表す物理量として <strong>ひずみ (strain)</strong> を定義することである. なお, 本章ではテンソルを明確な定義なしに用いるが, その定義は次章において述べる. ここではテンソルを行列と混同して構わない.</p>
 <h2 id="変位">変位</h2>
 <p>適当な座標系をもつ空間において, 境界を <span class="math inline">\(S\)</span> とする有限の大きさの物体 <span class="math inline">\(V\)</span> の内部に埋め込まれた点 <span class="math inline">\(\bs{X}\)</span> を考える. この物体が変形し, <span class="math inline">\(V\)</span>, <span class="math inline">\(S\)</span>, <span class="math inline">\(\bs{X}\)</span> がそれぞれ <span class="math inline">\(v\)</span>, <span class="math inline">\(s\)</span>, <span class="math inline">\(\bs{x}\)</span> に変化したとする (図 1). この時,</p>
 <p><span id="eq:displacement"><span class="math display">\[
 \bs{u}:=\bs{x}-\bs{X}
 \qquad(1)\]</span></span></p>
 <p>を <strong>変位 (displacement)</strong> という. 変位 <span class="math inline">\(\bs{u}\)</span> は連続体内部の各点の移動量を表すが, 変位を眺めても物体 <span class="math inline">\(V\)</span> がどのように変形したかはよく分からない.</p>
-<p>以降の議論においては, 変形前の点 <span class="math inline">\(\bs{X}\)</span> を変形後の点 <span class="math inline">\(\bs{x}\)</span> にうつす写像 <span class="math inline">\(\bs{x}=\bs{x}(\bs{X})\)</span> が, 一対一であって (したがって逆写像 <span class="math inline">\(\bs{x}=\bs{X}(\bs{x})\)</span> が定義できる), かつ十分に滑らかである (必要なだけ微分できる) と仮定する.</p>
 <figure>
 <img src="./figs/displacement.jpeg" alt="図 1: 変形する連続体とその内部に埋め込まれた点" id="fig:displacement" /><figcaption>図 1: 変形する連続体とその内部に埋め込まれた点</figcaption>
 </figure>
+<p>以降の議論においては, 変形前の点 <span class="math inline">\(\bs{X}\)</span> を変形後の点 <span class="math inline">\(\bs{x}\)</span> にうつす写像 <span class="math inline">\(\bs{x}=\bs{x}(\bs{X})\)</span> が, 一対一であって (したがって逆写像 <span class="math inline">\(\bs{x}=\bs{X}(\bs{x})\)</span> が定義できて), かつ十分に滑らかである (必要なだけ微分できる) と仮定する.</p>
 <h2 id="変形勾配テンソル">変形勾配テンソル</h2>
-<p>先の例においては変形する連続体内部の一点に注目したが、ここでは 図 2 に示す連続体内部に埋め込まれた短いベクトル <span class="math inline">\(\mathrm{d}\bs{X}:=\bs{Y}-\bs{X}\)</span> を考え, 変形に伴いこれが <span class="math inline">\(\mathrm{d}\bs{x}:=\bs{y}-\bs{x}\)</span> となったとする.</p>
+<p>先の例においては変形する連続体内部の一点に注目したが、ここでは 図 2 に示すように, 連続体内部に埋め込まれた短いベクトル <span class="math inline">\(\mathrm{d}\bs{X}:=\bs{Y}-\bs{X}\)</span> を考える. 変形に伴い, これが <span class="math inline">\(\mathrm{d}\bs{x}:=\bs{y}-\bs{x}\)</span> となったとする.</p>
 <figure>
 <img src="./figs/strain.jpeg" alt="図 2: 変形する連続体とその内部に埋め込まれたベクトル" id="fig:strain" /><figcaption>図 2: 変形する連続体とその内部に埋め込まれたベクトル</figcaption>
 </figure>
@@ -53,17 +53,96 @@
 \qquad(2)\]</span></span></p>
 <p>と書ける (式 ( 2) において Einstein の総和規約を用いたことに注意せよ. すなわち, <span class="math inline">\(j\)</span> はダミーインデックスであり, <span class="math inline">\(j\)</span> についての和の記号を省略している). ここで, ( 2) 右辺は, <span class="math inline">\(\partial x_i/\partial X_j\)</span> を <span class="math inline">\(ij\)</span> 成分にもつ行列 <span class="math inline">\(\mathsf{F}\)</span> とベクトル <span class="math inline">\(\mathrm{ d}\bs{X}\)</span> の積 (の第 <span class="math inline">\(i\)</span> 成分) に他ならない. ここで, <span class="math inline">\(\mathsf{F}\)</span> を <strong>変形勾配テンソル</strong> と呼ぶ.</p>
 <blockquote>
-<p><strong>問 1</strong>: 変形勾配テンソルの「行列式」 (=<span class="math inline">\(\text{det }\mathsf{F}\)</span>) が何を意味するか述べよ. また, <span class="math inline">\(\text{det } \mathsf{F}&gt;0\)</span> すなわち <span class="math inline">\(F\)</span> が正定であることを示せ. ヒント: ベクトル <span class="math inline">\(\mathrm{d}\bs{X}\)</span>, <span class="math inline">\(\mathrm{d}\bs{Y}\)</span>, <span class="math inline">\(\mathrm{d}\bs{Z}\)</span> からなる平行六面体の体積が, <span class="math inline">\(\mathsf{F}\)</span> により特徴づけられる変形に伴ってどのように変化するかを考えよ.</p>
+<p><strong>問 1</strong>: 変形勾配テンソルの「行列式」 (=<span class="math inline">\(\text{det }\mathsf{F}\)</span>) が何を意味するか述べよ. また, <span class="math inline">\(\text{det } \mathsf{F}&gt;0\)</span> すなわち <span class="math inline">\(\mathsf{F}\)</span> が正定であることを示せ. ヒント: ベクトル <span class="math inline">\(\mathrm{d}\bs{X}\)</span>, <span class="math inline">\(\mathrm{d}\bs{Y}\)</span>, <span class="math inline">\(\mathrm{d}\bs{Z}\)</span> からなる平行六面体の体積が, <span class="math inline">\(\mathsf{F}\)</span> により特徴づけられる変形に伴ってどのように変化するかを考えよ.</p>
 </blockquote>
 <blockquote>
 <p><strong>問 2</strong>: 変形勾配テンソルの成分を Kronecker のデルタと変位を用いて表わせ.</p>
+</blockquote>
+<blockquote>
+<p><strong>問 3</strong>: 変形勾配テンソルが直交行列であるとき, ベクトル <span class="math inline">\(\mathrm{d}\bs{X}\)</span> と <span class="math inline">\(\mathrm{d}\bs{x}\)</span> の「長さ」が等しいことを示せ.</p>
 </blockquote>
 <h2 id="green-のひずみテンソルと-almansi-のひずみテンソル">Green のひずみテンソルと Almansi のひずみテンソル</h2>
 <p><span class="math display">\[
 \mathrm{d}\bs{x}=\mathsf{F}\mathrm{d}\bs{X}
 \]</span></p>
-<p>に現れる変形勾配 <span class="math inline">\(\mathsf{F}\)</span> は, ベクトルの変形させる作用のみならずこれを回転させるも含んでいる. そこで, 以降, <span class="math inline">\(\mathsf{F}\)</span> を回転を表す成分と変形を表す成分に分解することを目指す.</p>
-<p>はじめに, <span class="math inline">\(\mathsf{F}\)</span> が正定値行列であるとき, <span class="math inline">\(\mathsf{F}^T\mathsf{F}\)</span> は正定値対称行列である.</p>
+<p>に現れる変形勾配 <span class="math inline">\(\mathsf{F}\)</span> は, ベクトルを変形させる作用のみならずこれを回転させる作用も含んでいる. そこで, 以降, <span class="math inline">\(\mathsf{F}\)</span> を回転を表す成分と変形を表す成分に分解することを目指す. そのような分解の存在は、正定値行列 <span class="math inline">\(\mathsf{F}\)</span> に対する以下の定理により保証される.</p>
+<blockquote>
+<p><strong>定理</strong> 正定値行列 <span class="math inline">\(\mathsf{F}\)</span> は直交行列 <span class="math inline">\(\mathsf{R}\)</span> と正定値対称行列 <span class="math inline">\(\mathsf{U}\)</span>, <span class="math inline">\(\mathsf{V}\)</span> を用いて, 以下のように <strong>極分解</strong> でき, またそのような <span class="math inline">\(\mathsf{R}\)</span>, <span class="math inline">\(\mathsf{U}\)</span> 及び <span class="math inline">\(\mathsf{V}\)</span> は一意に定まる. <span id="eq:kyokubunkai"><span class="math display">\[
+\mathsf{F}=\mathsf{RU}=\mathsf{VR}
+\qquad(3)\]</span></span></p>
+</blockquote>
+<p>以降, 上記の定理を証明する. 特に, 式 ( 3) のはじめの等号が成り立ち, かつそのような分解が一意であることを示す. 2つめの等式が成り立つことも同様にして証明できる. はじめに, <span class="math inline">\(\mathsf{F}\)</span> が正定値であるとき, <span class="math inline">\(\mathsf{F}^\mathrm{T}\mathsf{F}\)</span> もまた正定値であって, 対称となることに注意しよう. 正定値であることは「行列の積の行列式」が「行列式の積」に等しいことから</p>
+<p><span class="math display">\[
+\begin{align}
+\mathrm{det} \ \mathsf{F}^\mathrm{T}\mathsf{F}
+&amp;=\mathrm{det} \ \mathsf{F}^\mathrm{T}\mathrm{det} \ \mathsf{F}\\
+&amp;=(\mathrm{det} \ \mathsf{F})^2\\
+&amp;&gt;0 \ \ \ (\because \mathsf{F}\text{が正定値})
+\end{align}
+\]</span></p>
+<p>とすれば分かる. 対称であることは</p>
+<p><span class="math display">\[
+\begin{align}
+(\mathsf{F}^\mathrm{T}\mathsf{F})_{ij}
+&amp;= \mathsf{F}^\mathrm{T}_{ik}\mathsf{F}_{kj} \\
+&amp;= \mathsf{F}_{ki}\mathsf{F}^\mathrm{T}_{jk} \\
+&amp;= \mathsf{F}^\mathrm{T}_{jk}\mathsf{F}_{ki} \\
+&amp;=(\mathsf{F}^\mathrm{T}\mathsf{F})_{ji}
+\end{align}
+\]</span></p>
+<p>のように成分を計算すれば分かる. つぎに,</p>
+<blockquote>
+<p>(補題) 任意の正定値対称行列 <span class="math inline">\(\mathsf{A}\)</span> に対して, <span class="math inline">\(\mathsf{A}=\mathsf{B}^2\)</span> を満たす正定値対称行列 <span class="math inline">\(\mathsf{B}\)</span> が存在して一意である</p>
+</blockquote>
+<p>(証明は後述) により, <span class="math inline">\(\mathsf{F}^\mathrm{T}\mathsf{F}=\mathsf{U}^2\)</span> を満たす正定値対称行列 <span class="math inline">\(\mathsf{U}\)</span> が存在して一意である. 今, <span class="math inline">\(\mathsf{U}\)</span> は正定値行列であるからその逆 <span class="math inline">\(\mathsf{U}^{-1}\)</span> が存在する. したがって,</p>
+<p><span id="eq:R"><span class="math display">\[
+\mathsf{R}:=\mathsf{F}\mathsf{U}^{-1}
+\qquad(4)\]</span></span></p>
+<p>が定義できるが,</p>
+<p><span class="math display">\[
+\begin{align}
+\mathsf{R}^\mathrm{T}\mathsf{R}
+&amp;=\mathsf{U}^{-1}\mathsf{F}^\mathrm{T}\mathsf{F}\mathsf{U}^{-1}
+\ \ \ (\because \mathsf{U} \text{は対称})\\
+&amp;=\mathsf{U}^{-1}\mathsf{U}^2\mathsf{U}^{-1}\\
+&amp;=\mathsf{I}
+\end{align}
+\]</span></p>
+<p>より, <span class="math inline">\(\mathsf{R}\)</span> は直交行列である. <span class="math inline">\(\mathsf{U}\)</span> の一意性より式 ( 4) で定義される <span class="math inline">\(\mathsf{R}\)</span> もまた一意である. 一方で, 式 ( 4) は <span class="math inline">\(\mathsf{F}=\mathsf{RU}\)</span> に他ならず, 先の定理が示された.</p>
+<p>さて, 定理の証明に用いた補題の証明を見ておこう. 任意の正定値対称行列 <span class="math inline">\(\mathsf{A}\)</span> は直交行列 <span class="math inline">\(\mathsf{P}\)</span> を用いて</p>
+<p><span id="eq:a_diag"><span class="math display">\[
+\mathsf{P}^\mathrm{T}\mathsf{A}\mathsf{P}=\Lambda
+\qquad(5)\]</span></span></p>
+<p>と対角化可能である. ここに, <span class="math inline">\(\Lambda:=\mathrm{diag}(\lambda_1, \lambda_2, \cdots)\)</span> は対角行列であり, その対角成分は全て正である. ここで, <span class="math inline">\(\mathsf{B}:=\mathsf{P}\Lambda^{1/2}\mathsf{P}^\mathrm{T}\)</span> を定義すると, これが正定値対称行列であること, <span class="math inline">\(\mathsf{B}^2=\mathsf{A}\)</span> を満たすことは明らかであろう. なお, 対角行列 <span class="math inline">\(\Lambda^{1/2}:=\mathrm{diag}(\sqrt{\lambda_1}, \sqrt{\lambda_2}, \cdots)\)</span> を定義した. 以下, ここで定義した <span class="math inline">\(\mathsf{B}\)</span> 以外に, その二乗が <span class="math inline">\(\mathsf{A}\)</span> に等しい正定値対称行列が存在しないことを示して補題の証明を終わる. そのような行列 <span class="math inline">\(\tilde{\mathsf{B}}\)</span> の存在を仮定する. すなわち, <span class="math inline">\(\mathsf{A}=\mathsf{B}^2=\tilde{\mathsf{B}}^2\)</span> であって <span class="math inline">\(\mathsf{B}\neq\tilde{\mathsf{B}}\)</span> である正定値対称行列 <span class="math inline">\(\tilde{\mathsf{B}}\)</span> を考える. <span class="math inline">\(\tilde{\mathsf{B}}\)</span> のある固有値 <span class="math inline">\(\sqrt{\tilde{\lambda}}&gt;0\)</span> と対応する固有ベクトル <span class="math inline">\(\tilde{\bs{p}}\)</span> に対し</p>
+<p><span class="math display">\[
+\begin{align}
+\tilde{\mathsf{B}}\tilde{\bs{p}}=\sqrt{\tilde{\lambda}}\tilde{\bs{p}}
+&amp;\Leftrightarrow\tilde{\mathsf{B}}^2\tilde{\bs{p}}=\tilde{\mathsf{B}}\sqrt{\tilde{\lambda}}\tilde{\bs{p}}=\sqrt{\tilde{\lambda}}^2\tilde{\bs{p}}\\
+&amp;\Leftrightarrow\mathsf{A}\tilde{\bs{p}}=\tilde{\lambda}\tilde{\bs{p}}
+\end{align}
+\]</span></p>
+<p>であり, <span class="math inline">\(\mathsf{A}\)</span> の固有ベクトルは <span class="math inline">\(\tilde{\mathsf{B}}\)</span> の固有ベクトルでもある. したがって, 式( 5) の直交行列 <span class="math inline">\(\mathsf{P}\)</span> を用いて <span class="math inline">\(\tilde{\mathsf{B}}\)</span> を対角化することができて,</p>
+<p><span class="math display">\[
+\mathsf{P}^\mathrm{T}\tilde{\mathsf{B}}\mathsf{P}=\tilde{\Lambda}^{1/2}
+\]</span></p>
+<p>である (ここに, <span class="math inline">\(\Lambda^{1/2}\)</span> は <span class="math inline">\(\tilde{\mathsf{B}}\)</span> の固有値を対角に並べた対角行列) が, 両辺を二乗すれば</p>
+<p><span id="eq:a_diag2"><span class="math display">\[
+\mathsf{P}^\mathrm{T}\tilde{\mathsf{B}}^2\mathsf{P}=\tilde{\Lambda}
+\Leftrightarrow\mathsf{P}^\mathrm{T}\mathsf{A}\mathsf{P}=\tilde{\Lambda}
+\qquad(6)\]</span></span></p>
+<p>となる. 式 ( 5) と式 ( 6) を比較すれば, <span class="math inline">\(\Lambda=\tilde{\Lambda}\)</span> を得るが, <span class="math inline">\(\Lambda^{1/2}\)</span>, <span class="math inline">\(\tilde{\Lambda}^{1/2}\)</span> の成分は正なので, <span class="math inline">\(\Lambda^{1/2}=\tilde{\Lambda}^{1/2}\)</span> である. したがって, <span class="math inline">\(\tilde{\mathsf{B}}=\mathsf{B}\)</span> となり, 補題が示された.</p>
+<blockquote>
+<p><strong>問 4</strong> 対称行列の固有値が全て実数であることを証明せよ.</p>
+</blockquote>
+<blockquote>
+<p><strong>問 5</strong> 式 ( 3) の ２ つめの等号を示せ.</p>
+</blockquote>
+<p>左コーシー・グリーンテンソル B = V^2 = F F^T</p>
+<p>右コーシー・グリーンテンソル C = U^2 = F^T F</p>
+<p>dxdx=FdXFdX=dXCdX</p>
+<p>dxdx-dXdX=dx(I-B^{-1})dx dxdx-dXdX=dX(C-I)dX</p>
+<p>I-B^{-1}, C-I :回転を含まない == 変形を表す</p>
+<p>(C-I)/2: Greenのひずみテンソル (I-B^{-1})/2: Almansiのひずみテンソル</p>
 <h2 id="微小ひずみ">微小ひずみ</h2>
 <hr />
 <p><a href="../index.html">../</a></p>
