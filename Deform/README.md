@@ -128,7 +128,7 @@ $${#eq:a_diag}
 $$
 \begin{align}
 \tilde{\mathsf{B}}\tilde{\bs{p}}=\sqrt{\tilde{\lambda}}\tilde{\bs{p}}
-&\Leftrightarrow\tilde{\mathsf{B}}^2\tilde{\bs{p}}=\tilde{\mathsf{B}}\sqrt{\tilde{\lambda}}\tilde{\bs{p}}=\sqrt{\tilde{\lambda}}^2\tilde{\bs{p}}\\
+&\Leftrightarrow\tilde{\mathsf{B}}^2\tilde{\bs{p}}=\tilde{\mathsf{B}}\sqrt{\tilde{\lambda}}\tilde{\bs{p}}=\tilde{\lambda}\tilde{\bs{p}}\\
 &\Leftrightarrow\mathsf{A}\tilde{\bs{p}}=\tilde{\lambda}\tilde{\bs{p}}
 \end{align}
 $$
