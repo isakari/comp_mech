@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>Deformation</title>
   <style type="text/css">code{white-space: pre;}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -33,13 +33,13 @@
 \qquad(1)\]</span></span></p>
 <p>を <strong>変位 (displacement)</strong> という. 変位 <span class="math inline">\(\bs{u}\)</span> は連続体内部の各点の移動量を表すが, 変位を眺めても物体 <span class="math inline">\(V\)</span> がどのように変形したかはよく分からない.</p>
 <figure>
-<img src="./figs/displacement.jpeg" alt="図 1: 変形する連続体とその内部に埋め込まれた点" id="fig:displacement" /><figcaption>図 1: 変形する連続体とその内部に埋め込まれた点</figcaption>
+<img src="./figs/displacement.jpeg" id="fig:displacement" alt="図 1: 変形する連続体とその内部に埋め込まれた点" /><figcaption aria-hidden="true">図 1: 変形する連続体とその内部に埋め込まれた点</figcaption>
 </figure>
 <p>以降の議論においては, 変形前の点 <span class="math inline">\(\bs{X}\)</span> を変形後の点 <span class="math inline">\(\bs{x}\)</span> にうつす写像 <span class="math inline">\(\bs{x}=\bs{x}(\bs{X})\)</span> が, 一対一であって (したがって逆写像 <span class="math inline">\(\bs{x}=\bs{X}(\bs{x})\)</span> が定義できて), かつ十分に滑らかである (必要なだけ微分できる) と仮定する.</p>
 <h2 id="変形勾配テンソル">変形勾配テンソル</h2>
 <p>先の例においては変形する連続体内部の一点に注目したが、ここでは 図 2 に示すように, 連続体内部に埋め込まれた短いベクトル <span class="math inline">\(\mathrm{d}\bs{X}:=\bs{Y}-\bs{X}\)</span> を考える. 変形に伴い, これが <span class="math inline">\(\mathrm{d}\bs{x}:=\bs{y}-\bs{x}\)</span> となったとする.</p>
 <figure>
-<img src="./figs/strain.jpeg" alt="図 2: 変形する連続体とその内部に埋め込まれたベクトル" id="fig:strain" /><figcaption>図 2: 変形する連続体とその内部に埋め込まれたベクトル</figcaption>
+<img src="./figs/strain.jpeg" id="fig:strain" alt="図 2: 変形する連続体とその内部に埋め込まれたベクトル" /><figcaption aria-hidden="true">図 2: 変形する連続体とその内部に埋め込まれたベクトル</figcaption>
 </figure>
 <p>先に定義した写像 <span class="math inline">\(\bs{x}\)</span> を用いて <span class="math inline">\(\mathrm{d}\bs{x}\)</span> の一次近似を評価すると</p>
 <p><span id="eq:F"><span class="math display">\[

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
   <title>1d FEM</title>
   <style type="text/css">code{white-space: pre;}</style>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.2/MathJax.js?config=TeX-AMS_CHTML-full" type="text/javascript"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
   <!--[if lt IE 9]>
     <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
   <![endif]-->
@@ -27,11 +27,11 @@
 <h2 id="境界値問題の定式化">境界値問題の定式化</h2>
 <p>はじめに, 弦のたわみが式 ( 1) で記述される物理現象 (の一つ) であることを確認しよう. 今, 図 1 のように, 両端が固定された長さ 1 の弦に, 下向き分布荷重 <span class="math inline">\(q(x)\)</span> が作用した時, 点 <span class="math inline">\(x\)</span> におけるたわみ <span class="math inline">\(v(x)\)</span> を求める問題を考えよう. なお, 荷重は下向きに作用するので, 縦軸は下向きを正にとる.</p>
 <figure>
-<img src="./figs/setting.jpeg" alt="図 1: 分布荷重を受けてたわむ弦" id="fig:setting" /><figcaption>図 1: 分布荷重を受けてたわむ弦</figcaption>
+<img src="./figs/setting.jpeg" id="fig:setting" alt="図 1: 分布荷重を受けてたわむ弦" /><figcaption aria-hidden="true">図 1: 分布荷重を受けてたわむ弦</figcaption>
 </figure>
 <p>微小領域 <span class="math inline">\([x,x+\text{d}x]\)</span> における弦に作用する力の釣り合いを考える (図 2).</p>
 <figure>
-<img src="./figs/equiv.jpeg" alt="図 2: 微小領域における力のつりあい" id="fig:equiv" /><figcaption>図 2: 微小領域における力のつりあい</figcaption>
+<img src="./figs/equiv.jpeg" id="fig:equiv" alt="図 2: 微小領域における力のつりあい" /><figcaption aria-hidden="true">図 2: 微小領域における力のつりあい</figcaption>
 </figure>
 <p>弦に働く張力を <span class="math inline">\(T\)</span> と書き, 変形が微小であることを仮定すれば <span class="math inline">\(\sin\theta\simeq\tan\theta=\displaystyle\frac{\text{d}u(x)}{\text{d}x}\)</span> だから, 左端 <span class="math inline">\(x\)</span> に作用する張力の鉛直方向成分は <span class="math inline">\(-T\sin\theta\simeq-T\dfrac{u(x)}{x}\)</span> と書ける. 同様にして, 右端 <span class="math inline">\(x+\text{d}x\)</span> に作用する張力の鉛直方向成分は</p>
 <p><span class="math display">\[
@@ -134,7 +134,7 @@ u(0)=u(1)=0
 </blockquote>
 <p>例題の 1, 2 で得られた「数値解」と「正解」の様子を 図 3 に示す. Galerkin 法が高精度であることが先に示した誤差, 図からよく分かるであろう. なお, Galerkin 法や選点法を用いることで, 関数を求める問題であった境界問題が, 有限個の係数 <span class="math inline">\(a_i\)</span> (<span class="math inline">\(n=0,\cdots, n-1\)</span>) を求める問題に変わったことに注意されたい. この意味で, Galerkin 法や選点法を <strong>離散化</strong> 手法と呼ぶことがある.</p>
 <figure>
-<img src="./figs/example.png" alt="図 3: 例題の解" id="fig:example" /><figcaption>図 3: 例題の解</figcaption>
+<img src="./figs/example.png" id="fig:example" alt="図 3: 例題の解" /><figcaption aria-hidden="true">図 3: 例題の解</figcaption>
 </figure>
 <h3 id="演習問題1">演習問題1</h3>
 <blockquote>
@@ -150,7 +150,7 @@ u(0)=u(1)=0
 \qquad(5)\]</span></span></p>
 <p>を<strong>弱形式 (weak form)</strong> という. これに対応して, もとの微分方程式 ( 1) を<strong>強形式</strong>と呼ぶことがある. ここで, 強形式には <span class="math inline">\(u\)</span> の二階微分が含まれている一方で, 弱形式には <span class="math inline">\(u\)</span> の一階微分しか現れないことに注意されたい. したがって, 弱形式化することにより, <span class="math inline">\(u\)</span> の近似解 <span class="math inline">\(\tilde{u}\)</span> の基底として, 図 4 に示すような区分的に一次の関数を用いることができる (<span class="math inline">\(\tilde{u}(x)=a_0g_0(x)+a_1g_1(x)\)</span> の二階微分は恒等的に零であることに注意).</p>
 <figure>
-<img src="./figs/nokogiri.png" alt="図 4: 区分線形な基底関数の例" id="fig:nokogiri" /><figcaption>図 4: 区分線形な基底関数の例</figcaption>
+<img src="./figs/nokogiri.png" id="fig:nokogiri" alt="図 4: 区分線形な基底関数の例" /><figcaption aria-hidden="true">図 4: 区分線形な基底関数の例</figcaption>
 </figure>
 <p>弱形式 ( 5) を Galerkin 法で離散化して未知係数 <span class="math inline">\(a_i\)</span> を求める手順は, 先に見た (弱形式を用いない) 重み付き残差法の場合と同様であり, 基底で展開した <span class="math inline">\(\tilde{u}(x)=\displaystyle\sum_{i=0}^{n-1} a_i g_i(x)\)</span> を弱形式  5 に代入して得られる代数方程式 (=ここでは連立一次方程式となる)</p>
 <p><span id="eq:ax_b"><span class="math display">\[
@@ -182,7 +182,7 @@ a_1
 <p>となる. 積分を実行し, 代数方程式を解けば, <span class="math inline">\(a_0=a_1=1/9\)</span> を得る. この時, 近似解は 図 5 のようである.</p>
 </blockquote>
 <figure>
-<img src="./figs/ex_galerkin.png" alt="図 5: 例題の解" id="fig:ex_galerkin" /><figcaption>図 5: 例題の解</figcaption>
+<img src="./figs/ex_galerkin.png" id="fig:ex_galerkin" alt="図 5: 例題の解" /><figcaption aria-hidden="true">図 5: 例題の解</figcaption>
 </figure>
 <h3 id="演習問題2">演習問題2</h3>
 <blockquote>

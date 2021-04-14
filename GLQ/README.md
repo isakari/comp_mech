@@ -51,7 +51,7 @@ $${#eq:lagrange3}
 とすれば良いことが直ちに分かる. 一般の $N$ に対しては, 
 
 $$
-f(x)=\sum_{i=1}^{N} \prod_{j\ne i}\frac{x-x_j}{x_i-x_j}
+f(x)=\sum_{i=1}^{N} \prod_{j\ne i}\frac{x-x_j}{x_i-x_j}f_i
 $${#eq:lagrangen}
 
 とすれば良い. 
