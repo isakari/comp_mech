@@ -152,23 +152,7 @@ $${#eq:a_diag2}
 
 > **問 5** 式 ([@eq:kyokubunkai]) の ２ つめの等号を示せ. 
 
-左コーシー・グリーンテンソル
-B = V^2 = F F^T
-
-右コーシー・グリーンテンソル
-C = U^2 = F^T F
-
-dxdx=FdXFdX=dXCdX
-
-dxdx-dXdX=dx(I-B^{-1})dx
-dxdx-dXdX=dX(C-I)dX
-
-I-B^{-1}, C-I :回転を含まない == 変形を表す
-
-(C-I)/2: Greenのひずみテンソル
-(I-B^{-1})/2: Almansiのひずみテンソル
-
-## 微小ひずみ
+以上、変形勾配テンソル$\mathsf{F}$が二通りの極分解$\mathsf{F}=\mathsf{RU}=\mathsf{VR}$を持つことを見た. $\mathsf{U}$, $\mathsf{V}$ を用いて定義される $\mathsf{B}=\mathsf{V}^2=\mathsf{F F}^T$ 及び $\mathsf{C} = \mathsf{U}^2 = \mathsf{F}^T \mathsf{F}$ を各々左 Cauchy・Green テンソル, 右 Cauchy・Green テンソルと呼ぶ. さて, 変形勾配テンソル $\mathsf{F}$ の極分解を用いて, 変形に伴う微小線素の長さの変化を表してみよう. まず, 右 Cauchy・Greenテンソルを用いるならば, $|d\bs{x}|^2-|\mathrm{d}\bs{X}|^2=d\bs{X}\cdot(\mathsf{C}-\mathsf{I})d\bs{X}$ と書ける. ここに, $(\mathsf{C}-\mathsf{I}/2)$ を Green のひずみテンソルと呼ぶ. 左 Cauchy・Green テンソルを用いるならば $|d\bs{x}|^2-|\mathrm{d}\bs{X}|^2=d\bs{x}\cdot(\mathsf{I}-\mathsf{B}^{-1})d\bs{x}$ である. $(\mathsf{I}-\mathsf{B}^{-1})/2$ を Almansi のひずみテンソルと呼ぶ. ここで, 両ひずみが回転成分を持たない (=$\mathsf{R}$ を含まない) ことに注意しよう. 
 
 ---
 
